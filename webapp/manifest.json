@@ -25,10 +25,6 @@
           "odataVersion": "2.0"
         }
       },
-      "mockData": {
-        "uri": "model/test.json",
-        "type": "JSON"
-      },
       "ZPRAPPROVALSRV": {
         "uri": "/api/v2/srv/ZPRAPPROVALSRV/",
         "type": "OData",
@@ -111,8 +107,7 @@
         }
       },
       "LocalModel": {
-        "type": "sap.ui.model.json.JSONModel",
-        "dataSource": "mockData"
+        "type": "sap.ui.model.json.JSONModel"
       },
       "PRApprovalCAP": {
         "dataSource": "ZPRAPPROVALSRV",
