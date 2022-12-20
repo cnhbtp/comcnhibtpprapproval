@@ -1,0 +1,167 @@
+<mvc:View controllerName="com.cnhi.btp.prapproval.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns:ui="sap.ui.table" xmlns:core="sap.ui.core"
+    xmlns="sap.m" xmlns:smartTable="sap.ui.comp.smarttable" xmlns:layout="sap.ui.layout">
+    <Page id="page" showHeader="false">
+        <content>
+            <VBox class="sapUiSmallMargin">
+            <!-- <smartTable:SmartTable id="prSmartTbl" busyIndicatorDelay="0" entitySet="ebanSet" tableBindingPath="LocalModel>/Results" tableType="Table" showTablePersonalisation="true" useVariantManagement="false"
+                            header="{i18n>tblTitle}" persistencyKey="prSmartTbl" enableAutoBinding="false"
+                            showRowCount="true" showFullScreenButton="true" useExportToExcel="false" > -->
+                <ui:Table id="prTbl" selectionMode="None" rows="{path: 'LocalModel>/Results', sorter : {path : 'Badat', descending: true }}" visibleRowCountMode="Interactive" rowsUpdated="onRowsUpdated">
+                    <ui:extension>
+                        <Toolbar>
+                            <Title text="{LocalModel>/tblTitle}" titleStyle="H4" />
+                            <ToolbarSpacer />
+                            <Button icon="sap-icon://clear-all" type="Transparent" tooltip="{i18n>clearSortFilter}" press="onClearSortFilter" />
+                        </Toolbar>
+                    </ui:extension>
+                    <ui:columns>
+                        <ui:Column hAlign="Begin" filterProperty="Banfn" sortProperty="Banfn">
+                            <ui:customData>
+                                <core:CustomData key="p13nData" value='\{"columnKey": "Banfn", "columnIndex":"0", "filterProperty": "Banfn", "sortProperty": "Banfn", "type":"string", "leadingProperty": "Banfn"}'/>
+                            </ui:customData>
+                            <Label design="Bold" text="{/#eban/Banfn/@sap:label}"/>
+                            <ui:template>
+                                <Link text="{LocalModel>Banfn}" press="onItemPress" />                                 
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column sortProperty="Badat" filterProperty="Badat">
+                            <ui:customData>
+                                <core:CustomData key="p13nData" value='\{"columnKey": "Badat", "columnIndex":"1", "filterProperty": "Badat", "sortProperty": "Badat", "type":"string", "leadingProperty": "Badat"}'/>
+                            </ui:customData>
+                            <Label design="Bold" text="{i18n>creationDate}" />
+                            <ui:template>
+                                <Text text="{path: 'LocalModel>Badat', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}" wrapping="false" />
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column sortProperty="Txz01" filterProperty="Txz01">
+                            <ui:customData>
+                                <core:CustomData key="p13nData" value='\{"columnKey": "Txz01", "columnIndex":"2", "filterProperty": "Txz01", "sortProperty": "Txz01", "type":"string", "leadingProperty": "Txz01"}'/>
+                            </ui:customData>
+                            <Label design="Bold" text="{i18n>shortText}" />
+                            <ui:template>
+                                <Text text="{LocalModel>Txz01}" wrapping="false" />
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column sortProperty="Werks" filterProperty="Werks">
+                            <ui:customData>
+                                <core:CustomData key="p13nData" value='\{"columnKey": "Werks", "columnIndex":"3", "filterProperty": "Werks", "sortProperty": "Werks", "type":"string", "leadingProperty": "Werks"}'/>
+                            </ui:customData>
+                            <Label design="Bold" text="{i18n>plant}" />
+                            <ui:template>
+                                <Text text="{LocalModel>Werks}" wrapping="false" />
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column hAlign="Begin" filterProperty="ZzfgpIbsorig" sortProperty="ZzfgpIbsorig">
+                            <ui:customData>
+                                <core:CustomData key="p13nData" value='\{"columnKey": "ZzfgpIbsorig", "columnIndex":"4", "filterProperty": "ZzfgpIbsorig", "sortProperty": "ZzfgpIbsorig", "type":"string", "leadingProperty": "ZzfgpIbsorig"}'/>
+                            </ui:customData>
+                            <Label design="Bold" text="{i18n>costCenter}"/>
+                            <ui:template>
+                                <Text text="{LocalModel>ZzfgpIbsorig}" />                                 
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column hAlign="Begin" filterProperty="Frggr" sortProperty="Frggr">
+                            <ui:customData>
+                                <core:CustomData key="p13nData" value='\{"columnKey": "Frggr", "columnIndex":"5", "filterProperty": "Frggr", "sortProperty": "Frggr", "type":"string", "leadingProperty": "Frggr"}'/>
+                            </ui:customData>
+                            <Label design="Bold" text="{/#eban/Frggr/@sap:label}"/> 
+                            <ui:template>
+                                <Text text="{LocalModel>Frggr}" />                                 
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column hAlign="Begin" filterProperty="Frgst" sortProperty="Frgst">
+                            <ui:customData>
+                                <core:CustomData key="p13nData" value='\{"columnKey": "Frgst", "columnIndex":"6", "filterProperty": "Frgst", "sortProperty": "Frgst", "type":"string", "leadingProperty": "Frgst"}'/>
+                            </ui:customData>
+                            <Label design="Bold" text="{/#eban/Frgst/@sap:label}"/>
+                            <ui:template>
+                                <Text text="{LocalModel>Frgst}" />                                 
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column width="15em" hAlign="Begin" filterProperty="Frgkz" sortProperty="Frgkz">
+                            <ui:customData>
+                                <core:CustomData key="p13nData" value='\{"columnKey": "Frgkz", "columnIndex":"7", "filterProperty": "Frgkz", "sortProperty": "Frgkz", "type":"string", "leadingProperty": "Frgkz"}'/>
+                            </ui:customData>
+                            <Label design="Bold" text="{i18n>status}"/>
+                            <ui:template>
+                                <Text text="{LocalModel>Frgkz} - {LocalModel>Blckt}"  />                                 
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column sortProperty="uistatus" filterProperty="uistatus">
+                            <ui:customData>
+                                <core:CustomData key="p13nData" value='\{"columnKey": "uistatus", "columnIndex":"8", "filterProperty": "uistatus", "sortProperty": "uistatus", "type":"string", "leadingProperty": "uistatus"}'/>
+                            </ui:customData>
+                            <Label design="Bold" text="{i18n>btpStatus}" />
+                            <ui:template>
+                                <ObjectStatus text="{LocalModel>uistatus}" state="{LocalModel>uistatusstate}" ></ObjectStatus>
+                            </ui:template>
+                        </ui:Column>
+                        
+                        
+                        <!-- <ui:Column width="20em" hAlign="Begin" filterProperty="Statu" sortProperty="Statu">
+                            <ui:customData>
+                                <core:CustomData key="p13nData" value='\{"columnKey": "Statu", "columnIndex":"4", "filterProperty": "Statu", "sortProperty": "Statu", "type":"string", "leadingProperty": "Statu"}'/>
+                            </ui:customData>
+                            <Text  text="{/#eban/Statu/@sap:label}"/>
+                            <ui:template>
+                                <Text text="{LocalModel>Statu}"  />                                 
+                            </ui:template>
+                        </ui:Column> -->
+                    </ui:columns>
+                </ui:Table>
+            <!-- </smartTable:SmartTable> -->
+                <!-- <ui:Table
+                    rows="{path: 'LocalModel>/Results'}"
+                    selectionMode="None">
+                    <ui:extension>
+                        <Toolbar >
+                            <Title id="title" text="My PR Worklist"/>
+                            <ToolbarSpacer />
+                            <Button text="Refresh" type="Transparent" press="_getPRFromCAPM"  />
+                            <SearchField width="auto"/>
+                        </Toolbar>
+                    </ui:extension>
+                    <ui:columns>
+                        <ui:Column width="13em" sortProperty="pr" filterProperty="pr">
+                            <Label design="Bold" text="Item #" />
+                            <ui:template>
+                                <Link press="onItemPress" text="{LocalModel>pr}" wrapping="false" />
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column width="15em" sortProperty="releaseGrp" filterProperty="releaseGrp">
+                            <Label design="Bold" text="Release Group" />
+                            <ui:template>
+                                <Text text="{LocalModel>releaseGrp}" wrapping="false" />
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column width="18em" sortProperty="releaseStr" filterProperty="releaseStr">
+                            <Label design="Bold" text="Release Strategy" />
+                            <ui:template>
+                                <Text text="{LocalModel>releaseStr}" wrapping="false" />
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column width="13em" sortProperty="releaseInd" filterProperty="releaseInd">
+                            <Label design="Bold" text="Release Indicator" />
+                            <ui:template>
+                                <Text text="{LocalModel>releaseInd}" wrapping="false" />
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column width="10em" sortProperty="currency" filterProperty="currency">
+                            <Label design="Bold" text="Currency" />
+                            <ui:template>
+                                <Text text="{LocalModel>currency}" wrapping="false" />
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column width="18em" sortProperty="uistatus" filterProperty="uistatus">
+                            <Label design="Bold" text="Status" />
+                            <ui:template>
+                                <ObjectStatus text="{LocalModel>uistatus}" state="{= ${LocalModel>uistatus} === 'L0' ? 'Information' : 'Warning'}" ></ObjectStatus>
+                            </ui:template>
+                        </ui:Column>
+                    </ui:columns>
+                </ui:Table> -->
+                </VBox>
+        </content>
+    </Page>
+</mvc:View>

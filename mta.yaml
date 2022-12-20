@@ -1,0 +1,94 @@
+_schema-version: "3.2"
+ID: com-cnhi-btp-prapproval
+description: A Fiori application.
+version: 0.0.1
+modules:
+- name: com-cnhi-btp-prapproval-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: com-cnhi-btp-prapproval-destination-service
+    parameters:
+      content-target: true
+  - name: com-cnhi-btp-prapproval-repo-host
+    parameters:
+      service-key:
+        name: com-cnhi-btp-prapproval-repo-host-key
+  - name: com-cnhi-btp-prapproval-uaa
+    parameters:
+      service-key:
+        name: com-cnhi-btp-prapproval-uaa-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: com-cnhi-btp-prapproval_html_repo_host
+          ServiceInstanceName: com-cnhi-btp-prapproval-html5-srv
+          ServiceKeyName: com-cnhi-btp-prapproval-repo-host-key
+          sap.cloud.service: com-cnhi-btp-prapproval
+        - Authentication: OAuth2UserTokenExchange
+          Name: com-cnhi-btp-prapproval_uaa
+          ServiceInstanceName: com-cnhi-btp-prapproval-xsuaa-srv
+          ServiceKeyName: com-cnhi-btp-prapproval-uaa-key
+          sap.cloud.service: com-cnhi-btp-prapproval
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+- name: com-cnhi-btp-prapproval-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: com-cnhi-btp-prapproval-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - comcnhibtpprapproval.zip
+      name: comcnhibtpprapproval
+      target-path: resources/
+- name: comcnhibtpprapproval
+  type: html5
+  path: .
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: com-cnhi-btp-prapproval-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: com-cnhi-btp-prapproval-destination-service
+    service-plan: lite
+- name: com-cnhi-btp-prapproval-uaa
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: com-cnhi-btp-prapproval-xsuaa-srv
+    service-plan: application
+- name: com-cnhi-btp-prapproval-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: com-cnhi-btp-prapproval-html5-srv
+    service-plan: app-host
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true

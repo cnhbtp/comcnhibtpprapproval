@@ -1,0 +1,187 @@
+{
+    "sequence": ["L0","FA", "L2", "L4", "L5", "FR","RL","PU"],
+    "Comments": [],
+    "Items": [{
+        "item": "0010",
+        "date": "21 Mar, 2020",
+        "shortText": "Sample test",
+        "plant": "GDJD",
+        "matGrp": "37",
+        "reqTrackNo": "GHJ829",
+        "price": "34",
+        "curr": "CNY",
+        "name": "Daniel",
+        "releaseDate": "12 Aug, 2021",
+        "qty": "40",
+        "uom": "UM",
+        "totalVal": "4350",
+        "itemCat": "",
+        "vendor": "CHD",
+        "delDate": "15 Sep, 2021",
+        "purGrp": "TY738"        
+    },
+    {
+        "item": "0020",
+        "date": "25 Feb, 2020",
+        "shortText": "",
+        "plant": "5664",
+        "matGrp": "9365",
+        "reqTrackNo": "HI673",
+        "price": "66",
+        "curr": "CNY",
+        "name": "Musk",
+        "releaseDate": "05 May, 2021",
+        "qty": "20",
+        "uom": "UM",
+        "totalVal": "1150",
+        "itemCat": "",
+        "vendor": "CHD",
+        "delDate": "11 Oct, 2021",
+        "purGrp": "LKJ33"        
+    },{
+        "item": "0030",
+        "date": "11 Apr, 2020",
+        "shortText": "test",
+        "plant": "MDHD",
+        "matGrp": "98",
+        "reqTrackNo": "ERY732",
+        "price": "22",
+        "curr": "CNY",
+        "name": "Peter",
+        "releaseDate": "09 Jun, 2021",
+        "qty": "22",
+        "uom": "UM",
+        "totalVal": "6770",
+        "itemCat": "",
+        "vendor": "CHD",
+        "delDate": "01 Nov, 2021",
+        "purGrp": "QQ362"        
+    }],
+    "Results":[{
+        "pr": "23458",
+        "releaseGrp": "P0",
+        "releaseStr": "LE",
+        "docType": "AR038",
+        "releaseInd": "C-Work in progress",
+        "currency": "CNY",
+        "uistatus": "L0",
+        "status": "L0",
+        "requestor":"testuser@mindsetconsulting.com",
+        "nextApprover":""
+    },{
+        "pr": "75563",
+        "releaseGrp": "P3",
+        "releaseStr": "LE",
+        "docType": "MN138",
+        "releaseInd": "C-Work in progress",
+        "currency": "CNY",
+        "uistatus": "L0",
+        "status": "L0",
+        "requestor":"testuser@mindsetconsulting.com",
+        "nextApprover":""
+    },{
+        "pr": "95735",
+        "releaseGrp": "P2",
+        "releaseStr": "LE",
+        "docType": "EW948",
+        "releaseInd": "C-Work in progress",
+        "currency": "CNY",
+        "uistatus": "L0",
+        "status": "L0",
+        "requestor":"testuser@mindsetconsulting.com",
+        "nextApprover":""
+    },{
+        "pr": "57385",
+        "releaseGrp": "P1",
+        "releaseStr": "LE",
+        "docType": "QW484",
+        "releaseInd": "C-Work in progress",
+        "currency": "CNY",
+        "uistatus": "L0",
+        "status": "L0",
+        "requestor":"testuser@mindsetconsulting.com",
+        "nextApprover":""
+    },{
+        "pr": "72846",
+        "releaseGrp": "P0",
+        "releaseStr": "LE",
+        "docType": "IR444",
+        "releaseInd": "C-Work in progress",
+        "currency": "CNY",
+        "uistatus": "L0",
+        "status": "L0",
+        "requestor":"testuser@mindsetconsulting.com",
+        "nextApprover":""
+    },{
+        "pr": "02846",
+        "releaseGrp": "P2",
+        "releaseStr": "LE",
+        "docType": "LK949",
+        "releaseInd": "C-Work in progress",
+        "currency": "CNY",
+        "uistatus": "L0",
+        "status": "L0",
+        "requestor":"testuser@mindsetconsulting.com",
+        "nextApprover":""
+    },{
+        "pr": "72845",
+        "releaseGrp": "P3",
+        "releaseStr": "LE",
+        "docType": "TG847",
+        "releaseInd": "C-Work in progress",
+        "currency": "CNY",
+        "uistatus": "L0",
+        "status": "L0",
+        "requestor":"testuseruser@mindsetconsulting.com",
+        "nextApprover":""
+    }],
+    "NextApprovers": [{
+        "userID": "harikrishnaanatha@mindsetconsulting.com",
+        "userName": "Harikrishna",
+        "levelID": "L0"
+    },{
+        "userID": "matthewwhigham@mindsetconsulting.com",
+        "userName": "Matthew Whigham",
+        "levelID": "L4"
+    },{
+        "userID": "abhilashgampa@mindsetconsulting.com",
+        "userName": "Abhilash Gampa",
+        "levelID": "L2"
+    },{
+        "userID": "harikrishnaanatha@mindsetconsulting.com",
+        "userName": "Harikrishna",
+        "levelID": "L4"
+    },{
+        "userID": "matthewwhigham@mindsetconsulting.com",
+        "userName": "Matthew Whigham",
+        "levelID": "L5"
+    },{
+        "userID": "abhilashgampa@mindsetconsulting.com",
+        "userName": "Abhilash Gampa",
+        "levelID": "FR"
+    },{
+        "userID": "harikrishnaanatha@mindsetconsulting.com",
+        "userName": "Harikrishna",
+        "levelID": "FR"
+    },{
+        "userID": "matthewwhigham@mindsetconsulting.com",
+        "userName": "Matthew Whigham",
+        "levelID": "L5"
+    },{
+        "userID": "abhilashgampa@mindsetconsulting.com",
+        "userName": "Abhilash Gampa",
+        "levelID": "FA"
+    },{
+        "userID": "harikrishnaanatha@mindsetconsulting.com",
+        "userName": "Harikrishna",
+        "levelID": "L2"
+    },{
+        "userID": "matthewwhigham@mindsetconsulting.com",
+        "userName": "Matthew Whigham",
+        "levelID": "FA"
+    },{
+        "userID": "abhilashgampa@mindsetconsulting.com",
+        "userName": "Abhilash Gampa",
+        "levelID": "L4"
+    }]
+}

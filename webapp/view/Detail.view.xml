@@ -1,0 +1,262 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="com.cnhi.btp.prapproval.controller.Detail"
+	xmlns="sap.uxap" xmlns:ui="sap.ui.table" xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:layout="sap.ui.layout" xmlns:core="sap.ui.core"
+	xmlns:m="sap.m"
+	height="100%">
+	<ObjectPageLayout id="ObjectPageLayout" showFooter="{= ${LocalModel>id} ? ${LocalModel>IsApprover} ? true : false : true}"  showTitleInHeaderContent="true" upperCaseAnchorBar="false">
+		<headerTitle>
+				<ObjectPageDynamicHeaderTitle>
+					<expandedHeading>
+						<m:Title text="{LocalModel>Banfn}" wrapping="true"/>
+					</expandedHeading>
+					<snappedHeading>
+						<m:FlexBox fitContainer="true" alignItems="Center">
+							<m:Title text="{LocalModel>Banfn}" wrapping="true" />
+						</m:FlexBox>
+					</snappedHeading>
+					<expandedContent>
+                        <m:ObjectStatus text="{LocalModel>uistatus}" state="{LocalModel>uistatusstate}" />
+					</expandedContent>
+					<snappedContent>
+                        <m:ObjectStatus text="{LocalModel>uistatus}" state="{LocalModel>uistatusstate}" />
+					</snappedContent>
+				</ObjectPageDynamicHeaderTitle>
+			</headerTitle>
+		<headerContent>
+			<m:FlexBox wrap="Wrap">
+				<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+                    <m:ObjectNumber number="Document Type:" unit="{LocalModel>Bsart}"/>
+					<m:ObjectNumber number="Release Group:" unit="{LocalModel>Frggr}"/>
+				</layout:VerticalLayout>
+
+				<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<m:ObjectNumber number="Release Indicator:" unit="{LocalModel>Frgkz}"/>
+                    <m:ObjectNumber number="Release Strategy:" unit="{LocalModel>Frgst} {LocalModel>Frgxt}"/>
+				</layout:VerticalLayout>
+			</m:FlexBox>
+		</headerContent>
+		<sections>
+			<ObjectPageSection titleUppercase="false" title="">
+				<subSections>
+					<ObjectPageSubSection title="" titleUppercase="false">
+						<blocks>
+                        <smartTable:SmartTable id="prItemsSmartTbl" busyIndicatorDelay="0" entitySet="ebanSet" tableBindingPath="LocalModel>Items" tableType="Table" showTablePersonalisation="true" useVariantManagement="false"
+                            header="Items" persistencyKey="prItemsSmartTbl" enableAutoBinding="true" ignoreFromPersonalisation="Frgst"
+                            showRowCount="true" showFullScreenButton="true" useExportToExcel="false" >
+                            <ui:Table
+                                visibleRowCount="5" visibleRowCountMode="Auto" rowsUpdated="onTableUpdated"
+                                selectionMode="None">
+                                <ui:columns>
+                                    <ui:Column width="6em">
+                                        <ui:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Bnfpo", "columnIndex":"0", "filterProperty": "Bnfpo", "sortProperty": "Bnfpo", "type":"string", "leadingProperty": "Bnfpo"}'/>
+                                        </ui:customData>
+                                        <m:Label text="Item #" />
+                                        <ui:template>
+                                            <m:Text text="{LocalModel>Bnfpo}" wrapping="false" />
+                                        </ui:template>
+                                    </ui:Column>
+                                    <ui:Column width="10em">
+                                        <ui:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Badat", "columnIndex":"1", "filterProperty": "Badat", "sortProperty": "Badat", "type":"string", "leadingProperty": "Badat"}'/>
+                                        </ui:customData>
+                                        <m:Label text="Creation Date" />
+                                        <ui:template>
+                                            <m:Text text="{path: 'LocalModel>Badat', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}" wrapping="false" />
+                                        </ui:template>
+                                    </ui:Column>
+                                    <ui:Column width="10em">
+                                        <ui:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Txz01", "columnIndex":"2", "filterProperty": "Txz01", "sortProperty": "Txz01", "type":"string", "leadingProperty": "Txz01"}'/>
+                                        </ui:customData>
+                                        <m:Label text="Short text" />
+                                        <ui:template>
+                                            <m:Text text="{LocalModel>Txz01}" wrapping="false" />
+                                        </ui:template>
+                                    </ui:Column>
+                                    <ui:Column width="7em">
+                                        <ui:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Werks", "columnIndex":"3", "filterProperty": "Werks", "sortProperty": "Werks", "type":"string", "leadingProperty": "Werks"}'/>
+                                        </ui:customData>
+                                        <m:Label text="Plant" />
+                                        <ui:template>
+                                            <m:Text text="{LocalModel>Werks}" wrapping="false" />
+                                        </ui:template>
+                                    </ui:Column>
+                                    <ui:Column width="10em">
+                                        <ui:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Matkl", "columnIndex":"4", "filterProperty": "Matkl", "sortProperty": "Matkl", "type":"string", "leadingProperty": "Matkl"}'/>
+                                        </ui:customData>
+                                        <m:Label text="Material Group" />
+                                        <ui:template>
+                                            <m:Text text="{LocalModel>Matkl}" wrapping="false" />
+                                        </ui:template>
+                                    </ui:Column>
+                                    <ui:Column width="9em">
+                                        <ui:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Bednr", "columnIndex":"5", "filterProperty": "Bednr", "sortProperty": "Bednr", "type":"string", "leadingProperty": "Bednr"}'/>
+                                        </ui:customData>
+                                        <m:Label text="Req Tracking #" />
+                                        <ui:template>
+                                            <m:Text text="{LocalModel>Bednr}" wrapping="false" />
+                                        </ui:template>
+                                    </ui:Column>
+                                    <ui:Column width="6em">
+                                        <ui:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Preis", "columnIndex":"6", "filterProperty": "Preis", "sortProperty": "Preis", "type":"string", "leadingProperty": "Preis"}'/>
+                                        </ui:customData>
+                                        <m:Label text="Price" />
+                                        <ui:template>
+                                            <m:Text text="{LocalModel>Preis}" wrapping="false" />
+                                        </ui:template>
+                                    </ui:Column>
+                                    <ui:Column width="6em" >
+                                        <ui:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "curr", "columnIndex":"7", "filterProperty": "curr", "sortProperty": "curr", "type":"string", "leadingProperty": "curr"}'/>
+                                        </ui:customData>
+                                        <m:Label text="Currency" />
+                                        <ui:template>
+                                            <m:Text text="{LocalModel>curr}" wrapping="false" />
+                                        </ui:template>
+                                    </ui:Column>
+                                    <ui:Column width="12em" >
+                                        <ui:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Afnam", "columnIndex":"8", "filterProperty": "Afnam", "sortProperty": "Afnam", "type":"string", "leadingProperty": "Afnam"}'/>
+                                        </ui:customData>
+                                        <m:Label text="Name of person who created the object" />
+                                        <ui:template>
+                                            <m:Text text="{LocalModel>Afnam}" wrapping="false" />
+                                        </ui:template>
+                                    </ui:Column>
+                                    <ui:Column width="10em" >
+                                        <ui:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Frgdt", "columnIndex":"9", "filterProperty": "Frgdt", "sortProperty": "Frgdt", "type":"string", "leadingProperty": "Frgdt"}'/>
+                                        </ui:customData>
+                                        <m:Label text="Release Date" />
+                                        <ui:template>
+                                            <m:Text text="{LocalModel>Frgdt}" wrapping="false" />
+                                        </ui:template>
+                                    </ui:Column>
+                                    <ui:Column width="6em" >
+                                        <ui:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Menge", "columnIndex":"10", "filterProperty": "Menge", "sortProperty": "Menge", "type":"string", "leadingProperty": "Menge"}'/>
+                                        </ui:customData>
+                                        <m:Label text="Quantity" />
+                                        <ui:template>
+                                            <m:Text text="{LocalModel>Menge}" wrapping="false" />
+                                        </ui:template>
+                                    </ui:Column>
+                                    <ui:Column >
+                                        <ui:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Meins", "columnIndex":"11", "filterProperty": "Meins", "sortProperty": "Meins", "type":"string", "leadingProperty": "Meins"}'/>
+                                        </ui:customData>
+                                        <m:Label text="Uom" tooltip="Unit of measure" />
+                                        <ui:template>
+                                            <m:Text text="{LocalModel>Meins}" wrapping="false" />
+                                        </ui:template>
+                                    </ui:Column>
+                                    <ui:Column width="10em" >
+                                        <ui:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Preis", "columnIndex":"12", "filterProperty": "Preis", "sortProperty": "Preis", "type":"string", "leadingProperty": "Preis"}'/>
+                                        </ui:customData>
+                                        <m:Label text="Total Value at time of release" />
+                                        <ui:template>
+                                            <m:Text text="{LocalModel>Preis}" wrapping="false" />
+                                        </ui:template>
+                                    </ui:Column>
+                                    <ui:Column width="8em" >
+                                        <ui:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Bstyp", "columnIndex":"13", "filterProperty": "Bstyp", "sortProperty": "Bstyp", "type":"string", "leadingProperty": "Bstyp"}'/>
+                                        </ui:customData>
+                                        <m:Label text="Item Categoty" />
+                                        <ui:template>
+                                            <m:Text text="{LocalModel>Bstyp}" wrapping="false" />
+                                        </ui:template>
+                                    </ui:Column>
+                                    <ui:Column width="6em" >
+                                        <ui:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Emlif", "columnIndex":"14", "filterProperty": "Emlif", "sortProperty": "Emlif", "type":"string", "leadingProperty": "Emlif"}'/>
+                                        </ui:customData>
+                                        <m:Label text="Vendor" />
+                                        <ui:template>
+                                            <m:Text text="{LocalModel>Emlif}" wrapping="false" />
+                                        </ui:template>
+                                    </ui:Column>
+                                    <ui:Column width="10em" >
+                                        <ui:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Lfdat", "columnIndex":"15", "filterProperty": "Lfdat", "sortProperty": "Lfdat", "type":"string", "leadingProperty": "Lfdat"}'/>
+                                        </ui:customData>
+                                        <m:Label text="Delivery Date" />
+                                        <ui:template>
+                                            <m:Text text="{path: 'LocalModel>Lfdat', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}" wrapping="false" />
+                                        </ui:template>
+                                    </ui:Column>
+                                    <ui:Column width="10em" >
+                                        <ui:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Ekgrp", "columnIndex":"16", "filterProperty": "Ekgrp", "sortProperty": "Ekgrp", "type":"string", "leadingProperty": "Ekgrp"}'/>
+                                        </ui:customData>
+                                        <m:Label text="Purchasing Group" />
+                                        <ui:template>
+                                            <m:Text text="{LocalModel>Ekgrp}" wrapping="false" />
+                                        </ui:template>
+                                    </ui:Column>
+                                    <ui:Column width="10em" >
+                                        <ui:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Erdat", "columnIndex":"16", "filterProperty": "Erdat", "sortProperty": "Erdat", "type":"string", "leadingProperty": "Erdat"}'/>
+                                        </ui:customData>
+                                        <m:Label text="{/#eban/Erdat/@sap:label}" />
+                                        <ui:template>
+                                            <m:Text text="{path: 'LocalModel>Erdat', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}" wrapping="false" />
+                                        </ui:template>
+                                    </ui:Column>
+                                </ui:columns>
+                            </ui:Table>
+                            </smartTable:SmartTable>
+						</blocks>
+					</ObjectPageSubSection>
+                    <ObjectPageSubSection title="{LocalModel>/dynNextApprTitle} Approver" visible="{= ${LocalModel>id} ? ${LocalModel>IsApprover} ? true : false : true}" titleUppercase="false">
+						<blocks>
+                            <m:VBox>
+                                <m:Select forceSelection="false" showSecondaryValues= "true" selectedKey="{LocalModel>selNextApprover}" items="{LocalModel>/ApproverList}" class="sapUiSmallMarginBegin" width="20%">
+                                    <core:ListItem additionalText="{LocalModel>persnum}" text="{LocalModel>name}" key="{LocalModel>email}|{LocalModel>level}" />
+                                </m:Select>
+                            </m:VBox>
+						</blocks>
+					</ObjectPageSubSection>
+                    <ObjectPageSubSection title="Comment" visible="{= ${LocalModel>id} ? ${LocalModel>IsApprover} ? true : false : true}" titleUppercase="false">
+						<blocks>
+                            <m:TextArea width="50%" class="sapUiTinyMarginBegin" value="{LocalModel>/Comment}" placeholder="Add comment" />
+                        </blocks>
+					</ObjectPageSubSection>
+					<ObjectPageSubSection title="Workflow History" titleUppercase="false">
+						<blocks>
+                            <!-- <FeedInput
+                                post="onPost"
+                                icon="test-resources/sap/m/images/dronning_victoria.jpg"
+                                class="sapUiSmallMarginTopBottom" /> -->
+                            <m:List
+                                showSeparators="Inner"
+                                items="{path: 'LocalModel>Comments', sorter : {path : 'createdAt', descending: true }}">
+                                <m:FeedListItem
+                                    timestamp="{LocalModel>createdAt}"
+                                    sender="{LocalModel>authorName}"
+                                    senderPress="onSenderPress"
+                                    info="{= ${LocalModel>type} === 'A' ? 'Approved' : ${LocalModel>type} === 'S' ? 'Submitted':'Rejected'}"
+                                    text="{LocalModel>comment}"
+                                    convertLinksToAnchorTags="All"/>
+                            </m:List>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+        <footer>
+			<m:Toolbar>
+				<m:ToolbarSpacer />
+				<m:Button type="Reject" text="{i18n>reject}" visible="{= ${LocalModel>IsApprover} ? true : false}" press="onPressRejectBtn"/>
+                <m:Button type="Accept" text="{i18n>approve}" visible="{= ${LocalModel>IsApprover} ? true : false}" press="onPressApproveBtn"/>
+                <m:Button type="Emphasized" text="Submit" visible="{= ${LocalModel>id} ? false : ${LocalModel>IsRequestor}}" press="onPressSubmitBtn"/>   
+			</m:Toolbar>
+		</footer>
+	</ObjectPageLayout>
+</mvc:View>
