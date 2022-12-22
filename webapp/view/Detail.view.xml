@@ -41,7 +41,7 @@
 					<ObjectPageSubSection title="" titleUppercase="false">
 						<blocks>
                         <smartTable:SmartTable id="prItemsSmartTbl" busyIndicatorDelay="0" entitySet="ebanSet" tableBindingPath="LocalModel>Items" tableType="Table" showTablePersonalisation="true" useVariantManagement="false"
-                            header="Items" persistencyKey="prItemsSmartTbl" enableAutoBinding="true" ignoreFromPersonalisation="Frgst"
+                            header="Items" persistencyKey="prItemsSmartTbl" enableAutoBinding="true" ignoreFromPersonalisation="Frgst,Emlif"
                             showRowCount="true" showFullScreenButton="true" useExportToExcel="false" >
                             <ui:Table
                                 visibleRowCount="5" visibleRowCountMode="Auto" rowsUpdated="onTableUpdated"
@@ -112,11 +112,11 @@
                                     </ui:Column>
                                     <ui:Column width="6em" >
                                         <ui:customData>
-                                            <core:CustomData key="p13nData" value='\{"columnKey": "curr", "columnIndex":"7", "filterProperty": "curr", "sortProperty": "curr", "type":"string", "leadingProperty": "curr"}'/>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Waers", "columnIndex":"7", "filterProperty": "Waers", "sortProperty": "Waers", "type":"string", "leadingProperty": "Waers"}'/>
                                         </ui:customData>
                                         <m:Label text="Currency" />
                                         <ui:template>
-                                            <m:Text text="{LocalModel>curr}" wrapping="false" />
+                                            <m:Text text="{LocalModel>Waers}" wrapping="false" />
                                         </ui:template>
                                     </ui:Column>
                                     <ui:Column width="12em" >
@@ -157,11 +157,11 @@
                                     </ui:Column>
                                     <ui:Column width="10em" >
                                         <ui:customData>
-                                            <core:CustomData key="p13nData" value='\{"columnKey": "Preis", "columnIndex":"12", "filterProperty": "Preis", "sortProperty": "Preis", "type":"string", "leadingProperty": "Preis"}'/>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Rlwrt", "columnIndex":"12", "filterProperty": "Rlwrt", "sortProperty": "Rlwrt", "type":"string", "leadingProperty": "Rlwrt"}'/>
                                         </ui:customData>
                                         <m:Label text="Total Value at time of release" />
                                         <ui:template>
-                                            <m:Text text="{LocalModel>Preis}" wrapping="false" />
+                                            <m:Text text="{LocalModel>Rlwrt}" wrapping="false" />
                                         </ui:template>
                                     </ui:Column>
                                     <ui:Column width="8em" >
@@ -175,11 +175,11 @@
                                     </ui:Column>
                                     <ui:Column width="6em" >
                                         <ui:customData>
-                                            <core:CustomData key="p13nData" value='\{"columnKey": "Emlif", "columnIndex":"14", "filterProperty": "Emlif", "sortProperty": "Emlif", "type":"string", "leadingProperty": "Emlif"}'/>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Lifnr", "columnIndex":"14", "filterProperty": "Lifnr", "sortProperty": "Lifnr", "type":"string", "leadingProperty": "Lifnr"}'/>
                                         </ui:customData>
                                         <m:Label text="Vendor" />
                                         <ui:template>
-                                            <m:Text text="{LocalModel>Emlif}" wrapping="false" />
+                                            <m:Text text="{LocalModel>Lifnr}" wrapping="false" />
                                         </ui:template>
                                     </ui:Column>
                                     <ui:Column width="10em" >

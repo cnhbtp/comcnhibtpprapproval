@@ -165,6 +165,7 @@ sap.ui.define([
                                     aResults[i]['uistatus'] = 'Waiting for '+aResults[i]['Eprofile']+' approval';
                                     aResults[i]['uistatusstate'] = 'Warning';
                                     aResults[i]['IsApprover'] = true;
+                                    aResults[i]['IsRequestor'] = false;
                                 }
                                 aFinal.push(aResults[i]);
                             }
