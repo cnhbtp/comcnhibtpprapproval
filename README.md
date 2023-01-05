@@ -16,7 +16,7 @@
 |**Enable Code Assist Libraries**<br>False|
 |**Add Eslint configuration**<br>False|
 
-## prapproval
+### prapproval
 
 A Fiori application.
 
