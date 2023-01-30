@@ -235,22 +235,43 @@ sap.ui.define([
                     status  : oBindingCtx.selNextApprover.split('|')[1],
                     nextApprover    : oBindingCtx.selNextApprover.split('|')[0],
                 };
-                var sUrl = sServiceUrl + "PurchaceReqSet/"+oBindingCtx.id;
-                this.loadBusyIndicator("ObjectPageLayout", true);
-                ReqHelper.sendUpdateReq(sUrl, oPayload).then(function (oRes) {
-                    that.loadBusyIndicator("ObjectPageLayout",false);
-                    //that.oCommentsDlg.close();
-                    that._postComments(oRes);
-                  //  that._postHistory(oRes);
-                    MessageBox.success('Approved',{
-                        onClose: function () {
-                            that.getRouter().navTo("main");
-                        }.bind(that)
-                    });
-                }.bind(this))
-                .catch(function (response) {
-                    that.loadBusyIndicator("ObjectPageLayout",false);
-                }.bind(this));
+                if (oBindingCtx.id !== undefined ) {
+                    var sUrl = sServiceUrl + "PurchaceReqSet/"+oBindingCtx.id;
+                    this.loadBusyIndicator("ObjectPageLayout", true);
+                    ReqHelper.sendUpdateReq(sUrl, oPayload).then(function (oRes) {
+                        that.loadBusyIndicator("ObjectPageLayout",false);
+                        //that.oCommentsDlg.close();
+                        that._postComments(oRes);
+                      //  that._postHistory(oRes);
+                        MessageBox.success('Approved',{
+                            onClose: function () {
+                                that.getRouter().navTo("main");
+                            }.bind(that)
+                        });
+                    }.bind(this))
+                    .catch(function (response) {
+                        that.loadBusyIndicator("ObjectPageLayout",false);
+                    }.bind(this));
+                } else {
+                    var sUrl = sServiceUrl + "PurchaceReqSet";
+                    this.loadBusyIndicator("ObjectPageLayout", true);
+                    
+                    ReqHelper.sendCreateReq(sUrl, oPayload).then(function (oRes) {
+                        that.loadBusyIndicator("ObjectPageLayout",false);
+                        //that.oCommentsDlg.close();
+                        that._postComments(oRes);
+                        //that._postHistory(oRes);
+                        MessageBox.success('Approved',{
+                            onClose: function () {
+                                that.getRouter().navTo("main");
+                            }.bind(that)
+                        });
+                    }.bind(this))
+                    .catch(function (response) {
+                        that.loadBusyIndicator("ObjectPageLayout",false);
+                    }.bind(this));
+                }
+
             },/**
             * Method to submit
             * @private
