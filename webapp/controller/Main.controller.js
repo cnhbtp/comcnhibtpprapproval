@@ -142,7 +142,7 @@ sap.ui.define([
                                     aResults[i]['IsRequestor'] = false;
                                     aResults[i]['IsApprover'] = true;
                                     aResults[i]['id'] = oRes.value[iIdx].id;
-                                    aResults[i]['nextApprover'] = sLoggedInUserID;
+                                    aResults[i]['nextApprover'] = sLoggedInUserID !== undefined ? sLoggedInUserID : oRes.value[iIdx].nextApprover;
                                     aResults[i]['uistatus'] = 'Waiting for '+aResults[i]['Eprofile']+' approval';
                                     aResults[i]['uistatusstate'] = 'Indication04';
                                     aResults[i]['status'] = aResults[i]['Eprofile'];

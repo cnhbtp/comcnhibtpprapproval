@@ -79,9 +79,18 @@
                                 <Text text="{LocalModel>Frgst}" />                                 
                             </ui:template>
                         </ui:Column>
+                        <ui:Column width="15em" hAlign="Begin" filterProperty="nextApprover" sortProperty="nextApprover">
+                            <ui:customData>
+                                <core:CustomData key="p13nData" value='\{"columnKey": "Frgkz", "columnIndex":"7", "filterProperty": "nextApprover", "sortProperty": "nextApprover", "type":"string", "leadingProperty": "nextApprover"}'/>
+                            </ui:customData>
+                            <Label design="Bold" text="{i18n>nextApprover}"/>
+                            <ui:template>
+                                <Text text="{LocalModel>nextApprover}"  />                                 
+                            </ui:template>
+                        </ui:Column>
                         <ui:Column width="15em" hAlign="Begin" filterProperty="Frgkz" sortProperty="Frgkz">
                             <ui:customData>
-                                <core:CustomData key="p13nData" value='\{"columnKey": "Frgkz", "columnIndex":"7", "filterProperty": "Frgkz", "sortProperty": "Frgkz", "type":"string", "leadingProperty": "Frgkz"}'/>
+                                <core:CustomData key="p13nData" value='\{"columnKey": "Frgkz", "columnIndex":"8", "filterProperty": "Frgkz", "sortProperty": "Frgkz", "type":"string", "leadingProperty": "Frgkz"}'/>
                             </ui:customData>
                             <Label design="Bold" text="{i18n>status}"/>
                             <ui:template>
@@ -90,7 +99,7 @@
                         </ui:Column>
                         <ui:Column sortProperty="uistatus" filterProperty="uistatus">
                             <ui:customData>
-                                <core:CustomData key="p13nData" value='\{"columnKey": "uistatus", "columnIndex":"8", "filterProperty": "uistatus", "sortProperty": "uistatus", "type":"string", "leadingProperty": "uistatus"}'/>
+                                <core:CustomData key="p13nData" value='\{"columnKey": "uistatus", "columnIndex":"9", "filterProperty": "uistatus", "sortProperty": "uistatus", "type":"string", "leadingProperty": "uistatus"}'/>
                             </ui:customData>
                             <Label design="Bold" text="{i18n>btpStatus}" />
                             <ui:template>
