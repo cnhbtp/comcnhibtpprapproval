@@ -37,8 +37,8 @@ sap.ui.define([
             _getLoggedInUserInfo: function(){
                 var oLocalModel = this.getModel('LocalModel');
                 var sEmailId, sName;
-                oLocalModel.attachRequestCompleted(null, function(){
-                    try {
+                //oLocalModel.attachRequestCompleted(null, function(){
+                    /*try {
                         sEmailId = sap.ushell.Container.getService("UserInfo").getEmail();
                         sName = sap.ushell.Container.getService("UserInfo").getFullName();
                         if (!sEmailId) {
@@ -58,8 +58,29 @@ sap.ui.define([
                         sName = "Test User";
                     }
                     oLocalModel.setProperty("/LoggedInUserID", sEmailId);
+                    oLocalModel.setProperty("/LoggedInUserName", sName);*/
+                    try {
+                        sEmailId = sap.ushell.Container.getService("UserInfo").getEmail();
+                        sName = sap.ushell.Container.getService("UserInfo").getFullName();
+                        /*if (!sEmailId) {
+                           // sEmailId = "testuser@mindsetconsulting.com";
+                            //sName = "Test User";
+                            sEmailId = "harikrishnaanatha@mindsetconsulting.com";
+                            sName = "Harikrishna Anantha";
+                            //sEmailId = "abhilashgampa@mindsetconsulting.com";
+                            //sName = "Abhilash Gampa";
+                            //sEmailId = "matthewwhigham@mindsetconsulting.com";
+                            //sName = "Matthew Whigham";
+                            //sEmailId = "jonathanbragg@mindsetconsulting.com";
+                            //sName = "Jonathan Bragg";
+                        }*/
+                    } catch (error) {
+                        //sEmailId = "testuser@mindsetconsulting.com";
+                        //sName = "Test User";
+                    }
+                    oLocalModel.setProperty("/LoggedInUserID", sEmailId);
                     oLocalModel.setProperty("/LoggedInUserName", sName);
-                }, null);
+                //}, null);
             }
         });
     }
