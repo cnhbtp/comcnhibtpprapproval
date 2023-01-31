@@ -253,6 +253,8 @@ sap.ui.define([
                         that.loadBusyIndicator("ObjectPageLayout",false);
                     }.bind(this));
                 } else {
+                    var oLocalModel = that.getModel("LocalModel");
+                    var sRequestor = oLocalModel.getProperty("/LoggedInUserID");
                     var oPayload = {
                         pr  : oBindingCtx.Banfn,
                         status  : oBindingCtx.selNextApprover.split('|')[1],
