@@ -17,7 +17,7 @@ sap.ui.define([
              * @public
              * @override
              */
-            init: function () {
+            init: async function () {
                 var me = this;
                 //me._oErrorHandler = new ErrorHandler(this);
                 
@@ -25,7 +25,7 @@ sap.ui.define([
                 this.setModel(models.createDeviceModel(), "device");
 
                 //get logged in user info
-                this._getLoggedInUserInfo();
+                await this._getLoggedInUserInfo();
 
                 // call the base component's init function
                 UIComponent.prototype.init.apply(this, arguments);
@@ -34,7 +34,7 @@ sap.ui.define([
                 this.getRouter().initialize();
             },
 
-            _getLoggedInUserInfo: function(){
+            _getLoggedInUserInfo: async function(){
                 var oLocalModel = this.getModel('LocalModel');
                 var sEmailId, sName;
                 //oLocalModel.attachRequestCompleted(null, function(){
@@ -60,8 +60,9 @@ sap.ui.define([
                     oLocalModel.setProperty("/LoggedInUserID", sEmailId);
                     oLocalModel.setProperty("/LoggedInUserName", sName);*/
                     try {
-                        sEmailId = sap.ushell.Container.getService("UserInfo").getEmail();
-                        sName = sap.ushell.Container.getService("UserInfo").getFullName();
+                        var containerService = await sap.ushell.Container.getServiceAsync("UserInfo")
+                        sEmailId = containerService.getEmail();
+                        sName = containerService.getFullName();
                         /*if (!sEmailId) {
                            // sEmailId = "testuser@mindsetconsulting.com";
                             //sName = "Test User";
