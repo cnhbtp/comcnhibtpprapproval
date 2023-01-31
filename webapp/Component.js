@@ -17,7 +17,7 @@ sap.ui.define([
              * @public
              * @override
              */
-            init: async function () {
+            init: function () {
                 var me = this;
                 //me._oErrorHandler = new ErrorHandler(this);
                 
@@ -25,7 +25,7 @@ sap.ui.define([
                 this.setModel(models.createDeviceModel(), "device");
 
                 //get logged in user info
-                await this._getLoggedInUserInfo();
+                this._getLoggedInUserInfo();
 
                 // call the base component's init function
                 UIComponent.prototype.init.apply(this, arguments);
@@ -34,7 +34,7 @@ sap.ui.define([
                 this.getRouter().initialize();
             },
 
-            _getLoggedInUserInfo: async function(){
+            _getLoggedInUserInfo: function(){
                 var oLocalModel = this.getModel('LocalModel');
                 var sEmailId, sName;
                 //oLocalModel.attachRequestCompleted(null, function(){
@@ -60,9 +60,16 @@ sap.ui.define([
                     oLocalModel.setProperty("/LoggedInUserID", sEmailId);
                     oLocalModel.setProperty("/LoggedInUserName", sName);*/
                     try {
-                        var containerService = await sap.ushell.Container.getServiceAsync("UserInfo")
-                        sEmailId = containerService.getEmail();
-                        sName = containerService.getFullName();
+                        sap.ushell.Container.getServiceAsync("UserInfo").then(containerService => {
+                            sEmailId = containerService.getEmail();
+                            sName = containerService.getFullName();
+                            oLocalModel.setProperty("/LoggedInUserID", sEmailId);
+                            oLocalModel.setProperty("/LoggedInUserName", sName);
+                        }).catch(error => {
+                            oLocalModel.setProperty("/LoggedInUserID", undefined);
+                            oLocalModel.setProperty("/LoggedInUserName", undefined);
+                        })
+
                         /*if (!sEmailId) {
                            // sEmailId = "testuser@mindsetconsulting.com";
                             //sName = "Test User";
