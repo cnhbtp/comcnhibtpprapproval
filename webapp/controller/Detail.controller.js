@@ -231,11 +231,11 @@ sap.ui.define([
            _onApproveToCAPM: function(){
                 var that = this;
                 var oBindingCtx = that.getView().getBindingContext("LocalModel").getObject();
-                var oPayload = {
-                    status  : oBindingCtx.selNextApprover.split('|')[1],
-                    nextApprover    : oBindingCtx.selNextApprover.split('|')[0],
-                };
                 if (oBindingCtx.id !== undefined ) {
+                    var oPayload = {
+                        status  : oBindingCtx.selNextApprover.split('|')[1],
+                        nextApprover    : oBindingCtx.selNextApprover.split('|')[0],
+                    };
                     var sUrl = sServiceUrl + "PurchaceReqSet/"+oBindingCtx.id;
                     this.loadBusyIndicator("ObjectPageLayout", true);
                     ReqHelper.sendUpdateReq(sUrl, oPayload).then(function (oRes) {
@@ -253,6 +253,12 @@ sap.ui.define([
                         that.loadBusyIndicator("ObjectPageLayout",false);
                     }.bind(this));
                 } else {
+                    var oPayload = {
+                        pr  : oBindingCtx.Banfn,
+                        status  : oBindingCtx.selNextApprover.split('|')[1],
+                        nextApprover    : oBindingCtx.selNextApprover.split('|')[0],
+                        requestor   : sRequestor
+                    };
                     var sUrl = sServiceUrl + "PurchaceReqSet";
                     this.loadBusyIndicator("ObjectPageLayout", true);
                     
