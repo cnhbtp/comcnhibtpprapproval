@@ -123,7 +123,7 @@ sap.ui.define([
                 this.loadBusyIndicator("page", true);
                 ReqHelper.sendGetReq(sUrl).then(function (oRes) {
                     that.loadBusyIndicator("page",false);
-                    if(oRes.value.length > 0){
+                    //if(oRes.value.length > 0){
                         for(var i=0; i<aResults.length; i++){
                             var iIdx = oRes.value.findIndex(function(el){
                                 return el.pr === aResults[i].Banfn;
@@ -172,7 +172,7 @@ sap.ui.define([
                         }
                         oLocalModel.setProperty("/Results", $.extend(true,[],aFinal));
                         //that._rebindTable();
-                    }
+                    //}
                 }.bind(this))
                 .catch(function (response) {
                     that.loadBusyIndicator("page",false);
