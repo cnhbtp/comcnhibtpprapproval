@@ -38,6 +38,7 @@
         "dependencies": [
             "@sap/ux-ui5-tooling",
             "@sap/ui5-builder-webide-extension",
+            "@sap-ux/ui5-middleware-fe-mockserver",
             "ui5-task-zipper",
             "mbt"
         ]

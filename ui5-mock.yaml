@@ -36,5 +36,5 @@ server:
           - urlPath: /sap/opu/odata/sap/ZBTP_POC1_GTW_SRV/
             metadataPath: ./webapp/localService/sap_metadata.xml
             mockdataPath: ./webapp/localService/sap_mockdata
-            generateMockData: true
+            generateMockData: false
         annotations: []
