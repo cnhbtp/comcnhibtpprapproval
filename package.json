@@ -14,6 +14,8 @@
         "@ui5/cli": "^2.14.1",
         "@sap/ux-ui5-tooling": "1",
         "@sap/ui5-builder-webide-extension": "^1.1.7",
+        "@sap/ux-specification": "^1.102.15",
+        "@sap-ux/ui5-middleware-fe-mockserver": "2",
         "ui5-task-zipper": "^0.3.1",
         "mbt": "^1.0.15"
     },
@@ -23,6 +25,7 @@
         "build": "ui5 build --config=ui5.yaml --clean-dest --dest dist",
         "deploy": "fiori cfDeploy",
         "deploy-config": "fiori add deploy-config",
+        "start-mock": "fiori run --config ./ui5-mock.yaml --open \"test/flpSandbox.html?sap-ui-xx-viewCache=false#comcnhibtpprapproval-display\"",
         "start-noflp": "fiori run --open \"index.html?sap-ui-xx-viewCache=false\"",
         "start-variants-management": "fiori run --open \"preview.html?sap-ui-xx-viewCache=false&fiori-tools-rta-mode=true&sap-ui-rta-skip-flex-validation=true#preview-app\"",
         "unit-tests": "fiori run --open 'test/unit/unitTests.qunit.html'",
