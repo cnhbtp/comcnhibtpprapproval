@@ -61,7 +61,7 @@
                                 <Text text="{LocalModel>ZzfgpIbsorig}" />                                 
                             </ui:template>
                         </ui:Column>
-                        <ui:Column hAlign="Begin" filterProperty="Frggr" sortProperty="Frggr">
+                        <!--<ui:Column hAlign="Begin" filterProperty="Frggr" sortProperty="Frggr">
                             <ui:customData>
                                 <core:CustomData key="p13nData" value='\{"columnKey": "Frggr", "columnIndex":"5", "filterProperty": "Frggr", "sortProperty": "Frggr", "type":"string", "leadingProperty": "Frggr"}'/>
                             </ui:customData>
@@ -78,7 +78,7 @@
                             <ui:template>
                                 <Text text="{LocalModel>Frgst}" />                                 
                             </ui:template>
-                        </ui:Column>
+                        </ui:Column>-->
                         <ui:Column width="15em" hAlign="Begin" filterProperty="nextApprover" sortProperty="nextApprover">
                             <ui:customData>
                                 <core:CustomData key="p13nData" value='\{"columnKey": "Frgkz", "columnIndex":"7", "filterProperty": "nextApprover", "sortProperty": "nextApprover", "type":"string", "leadingProperty": "nextApprover"}'/>
