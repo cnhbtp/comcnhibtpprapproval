@@ -37,7 +37,8 @@
                                 <ui:customData>
                                     <core:CustomData key="p13nData" value='\{"columnKey": "Banfn", "columnIndex":"0", "filterProperty": "Banfn", "sortProperty": "Banfn", "type":"string", "leadingProperty": "Banfn"}' />
                                 </ui:customData>
-                                <Label design="Bold" text="{/#eban/Banfn/@sap:label}" />
+                                <Label design="Bold" text="{i18n>PurchReq}" />
+                                <!-- <Label design="Bold" text="{/#eban/Banfn/@sap:label}" /> -->
                                 <ui:template>
                                     <Link text="{LocalModel>Banfn}" press="onItemPress" />
                                 </ui:template>
@@ -82,7 +83,8 @@
                                 <ui:customData>
                                     <core:CustomData key="p13nData" value='\{"columnKey": "Frggr", "columnIndex":"5", "filterProperty": "Frggr", "sortProperty": "Frggr", "type":"string", "leadingProperty": "Frggr"}' />
                                 </ui:customData>
-                                <Label design="Bold" text="{/#eban/Frggr/@sap:label}" />
+                                <Label design="Bold" text="{i18n>ReleaseGroup}" />
+                                <!--<Label design="Bold" text="{/#eban/Frggr/@sap:label}" />-->
                                 <ui:template>
                                     <Text text="{LocalModel>Frggr}" />
                                 </ui:template>
@@ -91,7 +93,8 @@
                                 <ui:customData>
                                     <core:CustomData key="p13nData" value='\{"columnKey": "Frgst", "columnIndex":"6", "filterProperty": "Frgst", "sortProperty": "Frgst", "type":"string", "leadingProperty": "Frgst"}' />
                                 </ui:customData>
-                                <Label design="Bold" text="{/#eban/Frgst/@sap:label}" />
+                                <Label design="Bold" text="{i18n>ReleaseStrategy}" />
+                                <!--<Label design="Bold" text="{/#eban/Frgst/@sap:label}" />-->
                                 <ui:template>
                                     <Text text="{LocalModel>Frgst}" />
                                 </ui:template>
