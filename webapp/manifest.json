@@ -147,7 +147,7 @@
         },
         {
           "name": "detail",
-          "pattern": "detail/{pr}",
+          "pattern": "detail/{pr}:?query:",
           "target": [
             "Detail"
           ]

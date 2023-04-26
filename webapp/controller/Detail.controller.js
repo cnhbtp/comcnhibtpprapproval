@@ -110,12 +110,22 @@ sap.ui.define([
              * @param {sap.ui.base.Event} oEvent pattern match event in route 'object'
              * @private
              */
-            _onObjectMatched : function (oEvent) {
+            _onObjectMatched : async function (oEvent) {
                 var oArguments =  oEvent.getParameter("arguments");
                 var sPR = oArguments.pr;
                 var oLocalModel = this.getModel("LocalModel");
                 // var aLevel = oLocalModel.getProperty("/sequence");
                 // var aNextAppList = oLocalModel.getProperty("/NextApprovers");
+                var aResult = oLocalModel.getProperty("/Results");
+                if (aResult == undefined) {
+                    try {
+                        await this._getPRListPromise("ObjectPageLayout");
+                    }
+                    catch (error) {
+                        console.log(error);
+                    }
+                }
+
                 var iSelIdx = oLocalModel.getProperty("/Results").findIndex(function(el){
                     return el.Banfn === sPR;
                 });
