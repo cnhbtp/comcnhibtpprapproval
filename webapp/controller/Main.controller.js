@@ -106,7 +106,7 @@ sap.ui.define([
                                 }
                             }
                             oLocalModel.setProperty("/EbanResults", $.extend(true,[],aFinal));
-                            that._getPRFromCAPM();
+                            that._getPRFromCAPMPromise("page");
                         }
                     }
                 });
