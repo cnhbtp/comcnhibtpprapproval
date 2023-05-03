@@ -43,6 +43,12 @@
                         <smartTable:SmartTable id="prItemsSmartTbl" busyIndicatorDelay="0" entitySet="ebanSet" tableBindingPath="LocalModel>Items" tableType="Table" showTablePersonalisation="true" useVariantManagement="false"
                             header="Items" persistencyKey="prItemsSmartTbl" enableAutoBinding="true" ignoreFromPersonalisation="Frgst,Emlif"
                             showRowCount="true" showFullScreenButton="true" useExportToExcel="false" >
+                            <smartTable:customToolbar>
+                                <m:OverflowToolbar design="Transparent">
+                                	<m:ToolbarSpacer/>
+                                    <m:OverflowToolbarButton icon="sap-icon://document" visible="{= ${LocalModel>HasDocument} }" tooltip="Document" press="onGetDocument"/>
+                                </m:OverflowToolbar>
+                            </smartTable:customToolbar>
                             <ui:Table
                                 visibleRowCount="5" visibleRowCountMode="Auto" rowsUpdated="onTableUpdated"
                                 selectionMode="None">
@@ -214,6 +220,11 @@
                             </smartTable:SmartTable>
 						</blocks>
 					</ObjectPageSubSection>
+                    <ObjectPageSubSection title="Comment on Purchase Document" visible="{= ${LocalModel>HasComment} }" titleUppercase="false">
+						<blocks>
+                            <m:TextArea width="50%" class="sapUiTinyMarginBegin" value="{LocalModel>SapComment}" placeholder="Add comment" editable="false"/>
+                        </blocks>
+					</ObjectPageSubSection>
                     <ObjectPageSubSection title="{LocalModel>/dynNextApprTitle} Approver" visible="{= ${LocalModel>id} ? ${LocalModel>IsApprover} ? true : false : true}" titleUppercase="false">
 						<blocks>
                             <m:VBox>
@@ -223,11 +234,11 @@
                             </m:VBox>
 						</blocks>
 					</ObjectPageSubSection>
-                    <ObjectPageSubSection title="Comment" visible="{= ${LocalModel>id} ? ${LocalModel>IsApprover} ? true : false : true}" titleUppercase="false">
-						<blocks>
-                            <m:TextArea width="50%" class="sapUiTinyMarginBegin" value="{LocalModel>/Comment}" placeholder="Add comment" />
-                        </blocks>
-					</ObjectPageSubSection>
+                        <ObjectPageSubSection title="Comment" visible="{= ${LocalModel>id} ? ${LocalModel>IsApprover} ? true : false : true}" titleUppercase="false">
+                            <blocks>
+                                <m:TextArea width="50%" class="sapUiTinyMarginBegin" value="{LocalModel>/Comment}" placeholder="Add comment" />
+                            </blocks>
+                        </ObjectPageSubSection>
 					<ObjectPageSubSection title="Workflow History" titleUppercase="false">
 						<blocks>
                             <!-- <FeedInput

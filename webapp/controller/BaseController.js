@@ -114,6 +114,8 @@ sap.ui.define([
                             return el.pr === aResults[i].Banfn;
                         });
                         if (iIdx >= 0) {
+                            aResults[i]['HasComment'] = aResults[i]['HasComment']  ? aResults[i]['HasComment'] : false;
+                            aResults[i]['HasDocument'] = aResults[i]['HasDocument']  ? aResults[i]['HasDocument'] : false;
                             if (oRes.value[iIdx].nextApprover === sLoggedInUserID && oRes.value[iIdx].status === aResults[i]['Eprofile']) {
                                 aResults[i]['IsRequestor'] = false;
                                 aResults[i]['IsApprover'] = true;
@@ -143,6 +145,8 @@ sap.ui.define([
                                 aFinal.push(aResults[i]);
                             }
                         } else {
+                            aResults[i]['HasComment'] = aResults[i]['HasComment']  ? aResults[i]['HasComment'] : false;
+                            aResults[i]['HasDocument'] = aResults[i]['HasDocument']  ? aResults[i]['HasDocument'] : false;  
                             if (aResults[i]['Eprofile'] === 'N' || aResults[i]['Eprofile'] === 'L0') {
                                 aResults[i]['uistatus'] = aResults[i]['Eprofile'];
                                 aResults[i]['uistatusstate'] = 'Information';

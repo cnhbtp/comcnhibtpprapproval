@@ -34,7 +34,7 @@ sap.ui.define([
                 
             },
             _onObjectMatched: function(){
-                this._getPRList();
+                this._getPRListPromise("page");
                 //this._getPRFromCAPM();
             },
 

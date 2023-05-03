@@ -10,7 +10,7 @@
                 <smartTable:SmartTable
                     id="prSmartTbl"
                     busyIndicatorDelay="0"
-                    entitySet="LocalModel>/Results"
+                    entitySet="ebanSet"
                     tableBindingPath="LocalModel>/Results"
                     tableType="ResponsiveTable"
                     showTablePersonalisation="true"
