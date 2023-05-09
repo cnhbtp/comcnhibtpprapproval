@@ -220,7 +220,7 @@
                             </smartTable:SmartTable>
 						</blocks>
 					</ObjectPageSubSection>
-                    <ObjectPageSubSection title="Comment on Purchase Document" visible="{= ${LocalModel>HasComment} }" titleUppercase="false">
+                    <ObjectPageSubSection title="{i18n>SapComment}" visible="{= ${LocalModel>HasComment} }" titleUppercase="false">
 						<blocks>
                             <m:TextArea width="50%" class="sapUiTinyMarginBegin" value="{LocalModel>SapComment}" placeholder="Add comment" editable="false"/>
                         </blocks>
@@ -234,12 +234,12 @@
                             </m:VBox>
 						</blocks>
 					</ObjectPageSubSection>
-                        <ObjectPageSubSection title="Comment" visible="{= ${LocalModel>id} ? ${LocalModel>IsApprover} ? true : false : true}" titleUppercase="false">
+                        <ObjectPageSubSection title="{i18n>titleComment}" visible="{= ${LocalModel>id} ? ${LocalModel>IsApprover} ? true : false : true}" titleUppercase="false">
                             <blocks>
                                 <m:TextArea width="50%" class="sapUiTinyMarginBegin" value="{LocalModel>/Comment}" placeholder="Add comment" />
                             </blocks>
                         </ObjectPageSubSection>
-					<ObjectPageSubSection title="Workflow History" titleUppercase="false">
+					<ObjectPageSubSection title="{i18n>titleWorkflow}" titleUppercase="false">
 						<blocks>
                             <!-- <FeedInput
                                 post="onPost"
@@ -266,7 +266,7 @@
 				<m:ToolbarSpacer />
 				<m:Button type="Reject" text="{i18n>reject}" visible="{= ${LocalModel>IsApprover} ? true : false}" press="onPressRejectBtn"/>
                 <m:Button type="Accept" text="{i18n>approve}" visible="{= ${LocalModel>IsApprover} ? true : false}" press="onPressApproveBtn"/>
-                <m:Button type="Emphasized" text="Submit" visible="{= ${LocalModel>id} ? false : ${LocalModel>IsRequestor}}" press="onPressSubmitBtn"/>   
+                <m:Button type="Emphasized" text="{i18n>submit}" visible="{= ${LocalModel>id} ? false : ${LocalModel>IsRequestor}}" press="onPressSubmitBtn"/>   
 			</m:Toolbar>
 		</footer>
 	</ObjectPageLayout>

@@ -35,7 +35,10 @@
     "Lgort": "",
     "Matkl": "A1512",
     "Menge": "6500.000",
-    "Meins": "AU"
+    "Meins": "AU",
+    "HasComment": true,
+    "HasDocument": true,
+    "SapComment": "Comment very very big to the text"
 },
 {
     "Lifnr": "",
@@ -73,7 +76,8 @@
     "Lgort": "",
     "Matkl": "A9912",
     "Menge": "1.000",
-    "Meins": "AU"
+    "Meins": "AU",
+    "HasDocument": true
 },
 {
     "Lifnr": "",
