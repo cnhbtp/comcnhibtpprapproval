@@ -48,7 +48,7 @@
           "icon": "sap-icon://validate",
           "indicatorDataSource": {
             "dataSource": "mainService",
-            "path": "ebanSet/$count",
+            "path": "ebanSet/$count?$filter=Bnfpo eq '10'",
             "refresh": 120
           }
         }

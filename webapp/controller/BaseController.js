@@ -83,6 +83,22 @@ sap.ui.define([
                                 if(aItems.length > 0){
                                     var oHeader = aItems[0];
                                     oHeader.Items = $.extend(true,[],aItems);
+                                    
+                                    oHeader.Preis = 0;
+                                    oHeader['HasComment'] = oHeader['HasComment']  ? oHeader['HasComment'] : false;
+                                    oHeader['HasDocument'] = oHeader['HasDocument']  ? oHeader['HasDocument'] : false;
+                                    for (const item of oHeader.Items) {
+                                        item['HasComment'] = item['HasComment']  ? item['HasComment'] : false;
+                                        item['HasDocument'] = item['HasDocument']  ? item['HasDocument'] : false;
+                                        item['HasItemComment'] = item['HasItemComment']  ? item['HasItemComment'] : false;
+                                        try {
+                                            var preis = parseFloat(item.Preis);
+                                            oHeader.Preis = oHeader.Preis + preis;
+                                        } catch (error) {
+                                            
+                                        }
+                                    }
+                                    
                                     aFinal.push(oHeader);
                                 }
                             }
@@ -114,8 +130,6 @@ sap.ui.define([
                             return el.pr === aResults[i].Banfn;
                         });
                         if (iIdx >= 0) {
-                            aResults[i]['HasComment'] = aResults[i]['HasComment']  ? aResults[i]['HasComment'] : false;
-                            aResults[i]['HasDocument'] = aResults[i]['HasDocument']  ? aResults[i]['HasDocument'] : false;
                             if (oRes.value[iIdx].nextApprover === sLoggedInUserID && oRes.value[iIdx].status === aResults[i]['Eprofile']) {
                                 aResults[i]['IsRequestor'] = false;
                                 aResults[i]['IsApprover'] = true;
@@ -145,8 +159,6 @@ sap.ui.define([
                                 aFinal.push(aResults[i]);
                             }
                         } else {
-                            aResults[i]['HasComment'] = aResults[i]['HasComment']  ? aResults[i]['HasComment'] : false;
-                            aResults[i]['HasDocument'] = aResults[i]['HasDocument']  ? aResults[i]['HasDocument'] : false;  
                             if (aResults[i]['Eprofile'] === 'N' || aResults[i]['Eprofile'] === 'L0') {
                                 aResults[i]['uistatus'] = aResults[i]['Eprofile'];
                                 aResults[i]['uistatusstate'] = 'Information';

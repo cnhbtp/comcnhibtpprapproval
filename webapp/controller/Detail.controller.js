@@ -104,6 +104,20 @@ sap.ui.define([
             /* internal methods                                            */
             /* =========================================================== */
 
+            onPressComment: function (oEvent)  {
+                if (!this.oItemCommentsDlg) {
+                    this.oItemCommentsDlg = sap.ui.xmlfragment("com.cnhi.btp.prapproval.fragment.ItemComment", this);
+                    // to get access to the controller's model
+                    this.getView().addDependent(this.oItemCommentsDlg);
+                }
+                this.oItemCommentsDlg.setBindingContext(oEvent.getBindingContext);
+                this.oItemCommentsDlg.open();
+            },
+
+            onItemCommentClose: function(oEvent) {
+                this.oItemCommentsDlg.close();
+            },
+
             /**
              * Binds the view to the object path.
              * @function

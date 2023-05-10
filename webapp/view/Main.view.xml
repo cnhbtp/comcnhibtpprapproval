@@ -10,7 +10,7 @@
                 <smartTable:SmartTable
                     id="prSmartTbl"
                     busyIndicatorDelay="0"
-                    entitySet="ebanSet"
+                    entitySet="LocalModel>/Results"
                     tableBindingPath="LocalModel>/Results"
                     tableType="ResponsiveTable"
                     showTablePersonalisation="true"
@@ -20,7 +20,7 @@
                     enableAutoBinding="true"
                     showRowCount="true"
                     showFullScreenButton="true"
-                    useExportToExcel="false"
+                    enableExport="false"
                     smartFilterId="smartFilterBar"
                 >
                     <ui:Table id="prTbl" selectionMode="None" rows="{path: 'LocalModel>/Results', sorter : {path : 'Badat', descending: true }}" visibleRowCountMode="Interactive" rowsUpdated="onRowsUpdated">
@@ -79,7 +79,7 @@
                                     <Text text="{LocalModel>ZzfgpIbsorig}" />
                                 </ui:template>
                             </ui:Column>
-                            <ui:Column hAlign="Begin" filterProperty="Frggr" sortProperty="Frggr" visible="False">
+                            <ui:Column hAlign="Begin" filterProperty="Frggr" sortProperty="Frggr" visible="false">
                                 <ui:customData>
                                     <core:CustomData key="p13nData" value='\{"columnKey": "Frggr", "columnIndex":"5", "filterProperty": "Frggr", "sortProperty": "Frggr", "type":"string", "leadingProperty": "Frggr"}' />
                                 </ui:customData>
@@ -89,7 +89,7 @@
                                     <Text text="{LocalModel>Frggr}" />
                                 </ui:template>
                             </ui:Column>
-                            <ui:Column hAlign="Begin" filterProperty="Frgst" sortProperty="Frgst" visible="False">
+                            <ui:Column hAlign="Begin" filterProperty="Frgst" sortProperty="Frgst" visible="false">
                                 <ui:customData>
                                     <core:CustomData key="p13nData" value='\{"columnKey": "Frgst", "columnIndex":"6", "filterProperty": "Frgst", "sortProperty": "Frgst", "type":"string", "leadingProperty": "Frgst"}' />
                                 </ui:customData>
@@ -105,7 +105,14 @@
                                 </ui:customData>
                                 <Label design="Bold" text="{i18n>Preis}" />
                                 <ui:template>
-                                    <Text text="{LocalModel>Preis}" />
+                                    <Text text="{
+                                        path: 'LocalModel>Preis', 
+                                        type: 'sap.ui.model.type.Float',
+                                        formatOptions: {
+                                            decimals: 2,
+                                            groupingEnabled: false,
+                                            roundingMode: 'AWAY_FROM_ZERO'
+                                        }}" />
                                 </ui:template>
                             </ui:Column>
                             <ui:Column width="4em" hAlign="Begin" filterProperty="Waers" sortProperty="Waers">
@@ -144,7 +151,256 @@
                                     <ObjectStatus text="{LocalModel>uistatus}" state="{LocalModel>uistatusstate}" />
                                 </ui:template>
                             </ui:Column>
+                            <!-- Custom hidden fields 
+                            <ui:Column width="15em" hAlign="Begin" filterProperty="Blckt" sortProperty="Blckt" visible="false">
+                                <ui:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "Blckt", "columnIndex":"12", "filterProperty": "Blckt", "sortProperty": "Blckt", "type":"string", "leadingProperty": "Blckt"}' />
+                                </ui:customData>
+                                <Label design="Bold" text="{i18n>Blckt}" />
+                                <ui:template>
+                                    <Text text="{LocalModel>Blckt}" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="15em" hAlign="Begin" filterProperty="Erdat" sortProperty="Erdat" visible="false">
+                                <ui:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "Erdat", "columnIndex":"13", "filterProperty": "Erdat", "sortProperty": "Erdat", "type":"datetime", "leadingProperty": "Erdat"}' />
+                                </ui:customData>
+                                <Label design="Bold" text="{i18n>Erdat}" />
+                                <ui:template>
+                                    <Text text="{path: 'LocalModel>Erdat', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3em" hAlign="Begin" filterProperty="Bsakz" sortProperty="Bsakz" visible="false">
+                                <ui:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "Bsakz", "columnIndex":"14", "filterProperty": "Bsakz", "sortProperty": "Bsakz", "type":"string", "leadingProperty": "Bsakz"}' />
+                                </ui:customData>
+                                <Label design="Bold" text="{i18n>Bsakz}" />
+                                <ui:template>
+                                    <Text text="{LocalModel>Bsakz}" />
+                                </ui:template>
+                            </ui:Column>
+                           <ui:Column width="6.5em" hAlign="Begin" filterProperty="Ernam" sortProperty="Ernam" visible="false">
+                                <ui:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "Ernam", "columnIndex":"15", "filterProperty": "Ernam", "sortProperty": "Ernam", "type":"string", "leadingProperty": "Ernam"}' />
+                                </ui:customData>
+                                <Label design="Bold" text="{i18n>Ernam}" />
+                                <ui:template>
+                                    <Text text="{LocalModel>Ernam}" />
+                                </ui:template>
+                            </ui:Column>
+                           <ui:Column width="3em" hAlign="Begin" filterProperty="Estkz" sortProperty="Estkz" visible="false">
+                                <ui:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "Estkz", "columnIndex":"16", "filterProperty": "Estkz", "sortProperty": "Estkz", "type":"string", "leadingProperty": "Estkz"}' />
+                                </ui:customData>
+                                <Label design="Bold" text="{i18n>Estkz}" />
+                                <ui:template>
+                                    <Text text="{LocalModel>Estkz}" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="3em" hAlign="Begin" filterProperty="Loekz" sortProperty="Loekz" visible="false">
+                                <ui:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "Loekz", "columnIndex":"16", "filterProperty": "Loekz", "sortProperty": "Loekz", "type":"string", "leadingProperty": "Loekz"}' />
+                                </ui:customData>
+                                <Label design="Bold" text="{i18n>Loekz}" />
+                                <ui:template>
+                                    <Text text="{LocalModel>Loekz}" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="15em" hAlign="Begin" filterProperty="Lfdat" sortProperty="Lfdat" visible="false">
+                                <ui:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "Lfdat", "columnIndex":"17", "filterProperty": "Lfdat", "sortProperty": "Lfdat", "type":"datetime", "leadingProperty": "Lfdat"}' />
+                                </ui:customData>
+                                <Label design="Bold" text="{i18n>Lfdat}" />
+                                <ui:template>
+                                    <Text text="{path: 'LocalModel>Lfdat', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="5em" hAlign="Begin" filterProperty="Lifnr" sortProperty="Lifnr" visible="false">
+                                <ui:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "Lifnr", "columnIndex":"18", "filterProperty": "Lifnr", "sortProperty": "Lifnr", "type":"string", "leadingProperty": "Lifnr"}' />
+                                </ui:customData>
+                                <Label design="Bold" text="{i18n>Lifnr}" />
+                                <ui:template>
+                                    <Text text="{LocalModel>Lifnr}" />
+                                </ui:template>
+                            </ui:Column>-->
+                            <ui:Column width="3em" hAlign="Begin" filterProperty="Bstyp" sortProperty="Bstyp" visible="false">
+                                <ui:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "Bstyp", "columnIndex":"18", "filterProperty": "Bstyp", "sortProperty": "Bstyp", "type":"string", "leadingProperty": "Bstyp"}' />
+                                </ui:customData>
+                                <Label design="Bold" text="{i18n>Bstyp}" />
+                                <ui:template>
+                                    <Text text="{LocalModel>Bstyp}" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="4em" hAlign="Begin" filterProperty="Bsart" sortProperty="Bsart" visible="false">
+                                <ui:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "Bsart", "columnIndex":"18", "filterProperty": "Bsart", "sortProperty": "Bsart", "type":"string", "leadingProperty": "Bsart"}' />
+                                </ui:customData>
+                                <Label design="Bold" text="{i18n>Bsart}" />
+                                <ui:template>
+                                    <Text text="{LocalModel>Bsart}" />
+                                </ui:template>
+                            </ui:Column><!--
+                            <ui:Column width="5em" hAlign="Begin" filterProperty="Matnr" sortProperty="Matnr" visible="false">
+                                <ui:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "Matnr", "columnIndex":"18", "filterProperty": "Matnr", "sortProperty": "Matnr", "type":"string", "leadingProperty": "Matnr"}' />
+                                </ui:customData>
+                                <Label design="Bold" text="{i18n>Matnr}" />
+                                <ui:template>
+                                    <Text text="{LocalModel>Matnr}" />
+                                </ui:template>
+                            </ui:Column>
+                            <ui:Column width="5em" hAlign="Begin" filterProperty="Matkl" sortProperty="Matkl" visible="false">
+                                <ui:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "Matkl", "columnIndex":"19", "filterProperty": "Matkl", "sortProperty": "Matkl", "type":"string", "leadingProperty": "Matkl"}' />
+                                </ui:customData>
+                                <Label design="Bold" text="{i18n>Matkl}" />
+                                <ui:template>
+                                    <Text text="{LocalModel>Matkl}" />
+                                </ui:template>
+                            </ui:Column>
 
+                            <ui:Column sortProperty="Peinh" filterProperty="Peinh" visible="false">
+                                <ui:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "Peinh", "columnIndex":"20", "filterProperty": "Peinh", "sortProperty": "Peinh", "type":"string", "leadingProperty": "Peinh"}' />
+                                </ui:customData>
+                                <Label design="Bold" text="{i18n>Peinh}" />
+                                <ui:template>
+                                    <Text text="{LocalModel>Peinh}" wrapping="false" />
+                                </ui:template>
+                            </ui:Column>
+
+                            <ui:Column sortProperty="Statu" filterProperty="Statu" visible="false">
+                                <ui:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "Statu", "columnIndex":"21", "filterProperty": "Statu", "sortProperty": "Statu", "type":"string", "leadingProperty": "Statu"}' />
+                                </ui:customData>
+                                <Label design="Bold" text="{i18n>Statu}" />
+                                <ui:template>
+                                    <Text text="{LocalModel>Statu}" wrapping="false" />
+                                </ui:template>
+                            </ui:Column>
+
+                            <ui:Column sortProperty="Eprofile" filterProperty="Eprofile" visible="false">
+                                <ui:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "Eprofile", "columnIndex":"22", "filterProperty": "Eprofile", "sortProperty": "Eprofile", "type":"string", "leadingProperty": "Eprofile"}' />
+                                </ui:customData>
+                                <Label design="Bold" text="{i18n>Eprofile}" />
+                                <ui:template>
+                                    <Text text="{LocalModel>Eprofile}" wrapping="false" />
+                                </ui:template>
+                            </ui:Column>
+
+                            <ui:Column sortProperty="Ekgrp" filterProperty="Ekgrp" visible="false">
+                                <ui:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "Ekgrp", "columnIndex":"23", "filterProperty": "Ekgrp", "sortProperty": "Ekgrp", "type":"string", "leadingProperty": "Ekgrp"}' />
+                                </ui:customData>
+                                <Label design="Bold" text="{i18n>Ekgrp}" />
+                                <ui:template>
+                                    <Text text="{LocalModel>Ekgrp}" wrapping="false" />
+                                </ui:template>
+                            </ui:Column>
+
+                            <ui:Column sortProperty="Menge" filterProperty="Menge" visible="false">
+                                <ui:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "Menge", "columnIndex":"24", "filterProperty": "Menge", "sortProperty": "Menge", "type":"string", "leadingProperty": "Menge"}' />
+                                </ui:customData>
+                                <Label design="Bold" text="{i18n>Menge}" />
+                                <ui:template>
+                                    <Text text="{LocalModel>Menge}" wrapping="false" />
+                                </ui:template>
+                            </ui:Column>
+
+                            <ui:Column sortProperty="Zzfgpibsubsyst" filterProperty="Zzfgpibsubsyst" visible="false">
+                                <ui:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "Zzfgpibsubsyst", "columnIndex":"26", "filterProperty": "Zzfgpibsubsyst", "sortProperty": "Zzfgpibsubsyst", "type":"string", "leadingProperty": "Zzfgpibsubsyst"}' />
+                                </ui:customData>
+                                <Label design="Bold" text="{i18n>Zzfgpibsubsyst}" />
+                                <ui:template>
+                                    <Text text="{LocalModel>Zzfgpibsubsyst}" wrapping="false" />
+                                </ui:template>
+                            </ui:Column>
+
+                            <ui:Column sortProperty="Frgdt" filterProperty="Frgdt" visible="false">
+                                <ui:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "Frgdt", "columnIndex":"27", "filterProperty": "Frgdt", "sortProperty": "Frgdt", "type":"string", "leadingProperty": "Frgdt"}' />
+                                </ui:customData>
+                                <Label design="Bold" text="{i18n>Frgdt}" />
+                                <ui:template>
+                                    <Text text="{LocalModel>Frgdt}" wrapping="false" />
+                                </ui:template>
+                            </ui:Column>
+
+                            <ui:Column sortProperty="Frgzu" filterProperty="Frgzu" visible="false">
+                                <ui:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "Frgzu", "columnIndex":"28", "filterProperty": "Frgzu", "sortProperty": "Frgzu", "type":"string", "leadingProperty": "Frgzu"}' />
+                                </ui:customData>
+                                <Label design="Bold" text="{i18n>Frgzu}" />
+                                <ui:template>
+                                    <Text text="{LocalModel>Frgzu}" wrapping="false" />
+                                </ui:template>
+                            </ui:Column>
+
+                            <ui:Column sortProperty="Afnam" filterProperty="Afnam" visible="false">
+                                <ui:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "Afnam", "columnIndex":"29", "filterProperty": "Afnam", "sortProperty": "Afnam", "type":"string", "leadingProperty": "Afnam"}' />
+                                </ui:customData>
+                                <Label design="Bold" text="{i18n>Afnam}" />
+                                <ui:template>
+                                    <Text text="{LocalModel>Afnam}" wrapping="false" />
+                                </ui:template>
+                            </ui:Column>
+
+                            <ui:Column sortProperty="Bnfpo" filterProperty="Bnfpo" visible="false">
+                                <ui:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "Bnfpo", "columnIndex":"30", "filterProperty": "Bnfpo", "sortProperty": "Bnfpo", "type":"string", "leadingProperty": "Bnfpo"}' />
+                                </ui:customData>
+                                <Label design="Bold" text="{i18n>Bnfpo}" />
+                                <ui:template>
+                                    <Text text="{LocalModel>Bnfpo}" wrapping="false" />
+                                </ui:template>
+                            </ui:Column>
+
+                            <ui:Column sortProperty="Lgort" filterProperty="Lgort" visible="false">
+                                <ui:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "Lgort", "columnIndex":"31", "filterProperty": "Lgort", "sortProperty": "Lgort", "type":"string", "leadingProperty": "Lgort"}' />
+                                </ui:customData>
+                                <Label design="Bold" text="{i18n>Lgort}" />
+                                <ui:template>
+                                    <Text text="{LocalModel>Lgort}" wrapping="false" />
+                                </ui:template>
+                            </ui:Column>
+
+                            <ui:Column sortProperty="Bednr" filterProperty="Bednr" visible="false">
+                                <ui:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "Bednr", "columnIndex":"32", "filterProperty": "Bednr", "sortProperty": "Bednr", "type":"string", "leadingProperty": "Bednr"}' />
+                                </ui:customData>
+                                <Label design="Bold" text="{i18n>Bednr}" />
+                                <ui:template>
+                                    <Text text="{LocalModel>Bednr}" wrapping="false" />
+                                </ui:template>
+                            </ui:Column>
+
+                            <ui:Column sortProperty="Meins" filterProperty="Meins" visible="false">
+                                <ui:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "Meins", "columnIndex":"33", "filterProperty": "Meins", "sortProperty": "Meins", "type":"string", "leadingProperty": "Meins"}' />
+                                </ui:customData>
+                                <Label design="Bold" text="{i18n>Meins}" />
+                                <ui:template>
+                                    <Text text="{LocalModel>Meins}" wrapping="false" />
+                                </ui:template>
+                            </ui:Column>
+
+                            <ui:Column sortProperty="Emlif" filterProperty="Emlif" visible="false">
+                                <ui:customData>
+                                    <core:CustomData key="p13nData" value='\{"columnKey": "Emlif", "columnIndex":"34", "filterProperty": "Emlif", "sortProperty": "Emlif", "type":"string", "leadingProperty": "Emlif"}' />
+                                </ui:customData>
+                                <Label design="Bold" text="{i18n>Emlif}" />
+                                <ui:template>
+                                    <Text text="{LocalModel>Emlif}" wrapping="false" />
+                                </ui:template>
+                            </ui:Column>
+-->
                             <!-- <ui:Column width="20em" hAlign="Begin" filterProperty="Statu" sortProperty="Statu">
                             <ui:customData>
                                 <core:CustomData key="p13nData" value='\{"columnKey": "Statu", "columnIndex":"4", "filterProperty": "Statu", "sortProperty": "Statu", "type":"string", "leadingProperty": "Statu"}'/>

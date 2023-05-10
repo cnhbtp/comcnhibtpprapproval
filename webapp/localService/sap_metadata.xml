@@ -52,6 +52,11 @@
                 <Property Name="Matkl" Type="Edm.String" Nullable="false" MaxLength="9" sap:label="Material Group" sap:creatable="false" sap:updatable="false" sap:filterable="false" />
                 <Property Name="Menge" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unit="Meins" sap:label="Quantity" sap:creatable="false" sap:updatable="false" sap:filterable="false" />
                 <Property Name="Meins" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Unit of Measure" sap:creatable="false" sap:updatable="false" sap:filterable="false" sap:semantics="unit-of-measure" />
+                <Property Name="HasComment" Type="Edm.Boolean" Nullable="false" sap:label="Has Comment" sap:creatable="false" sap:updatable="false" sap:filterable="false"  />
+                <Property Name="HasDocument" Type="Edm.Boolean" Nullable="false"  sap:label="Has Document" sap:creatable="false" sap:updatable="false" sap:filterable="false"  />
+                <Property Name="SapComment" Type="Edm.String" Nullable="false"  sap:label="Comment" sap:creatable="false" sap:updatable="false" sap:filterable="false"  />
+                <Property Name="HasItemComment" Type="Edm.Boolean" Nullable="false" sap:label="Has Item Comment" sap:creatable="false" sap:updatable="false" sap:filterable="false"  />
+                <Property Name="SapItemComment" Type="Edm.String" Nullable="false"  sap:label="Item Comment" sap:creatable="false" sap:updatable="false" sap:filterable="false"  />
             </EntityType>
             <EntityContainer Name="ZBTP_POC1_GTW_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json">
                 <EntitySet Name="ApproverSet" EntityType="ZBTP_POC1_GTW_SRV.Approver" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1" />

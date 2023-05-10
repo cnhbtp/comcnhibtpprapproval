@@ -1,6 +1,6 @@
 [
     {
-    "Lifnr": "",
+    "Lifnr": "123545",
     "Banfn": "10558876",
     "Bednr": "I5",
     "Blckt": "Awaiting App from Professional",
@@ -115,7 +115,9 @@
     "Lgort": "",
     "Matkl": "A1502",
     "Menge": "18000",
-    "Meins": "EA"
+    "Meins": "EA",
+    "HasItemComment": true,
+    "SapItemComment": "Commento Item Testo"
 },
 {
     "Lifnr": "",
