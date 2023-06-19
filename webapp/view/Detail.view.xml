@@ -46,7 +46,7 @@
                             <smartTable:customToolbar>
                                 <m:OverflowToolbar design="Transparent">
                                 	<m:ToolbarSpacer/>
-                                    <m:OverflowToolbarButton icon="sap-icon://document" visible="{= ${LocalModel>HasDocument} }" tooltip="Document" press="onGetDocument"/>
+                                    <m:OverflowToolbarButton icon="sap-icon://attachment" visible="{= ${LocalModel>HasDocument} }" tooltip="{i18n>attachment}" press="onGetDocument"/>
                                 </m:OverflowToolbar>
                             </smartTable:customToolbar>
                             <ui:Table
@@ -409,7 +409,7 @@
                     <ObjectPageSubSection title="{LocalModel>/dynNextApprTitle} Approver" visible="{= ${LocalModel>id} ? ${LocalModel>IsApprover} ? true : false : true}" titleUppercase="false">
 						<blocks>
                             <m:VBox>
-                                <m:Select forceSelection="false" showSecondaryValues= "true" selectedKey="{LocalModel>selNextApprover}" items="{LocalModel>/ApproverList}" class="sapUiSmallMarginBegin" width="20%">
+                                <m:Select forceSelection="{LocalModel>/ApproverForceSelection}" showSecondaryValues= "true" selectedKey="{LocalModel>selNextApprover}" items="{LocalModel>/ApproverList}" class="sapUiSmallMarginBegin" width="20%">
                                     <core:ListItem additionalText="{LocalModel>persnum}" text="{LocalModel>name}" key="{LocalModel>email}|{LocalModel>level}" />
                                 </m:Select>
                             </m:VBox>

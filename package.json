@@ -21,6 +21,7 @@
     "scripts": {
         "start": "fiori run --open \"test/flpSandbox.html?sap-ui-xx-viewCache=false#comcnhibtpprapproval-display\"",
         "start-local": "fiori run --config ./ui5-local.yaml --open \"test/flpSandbox.html?sap-ui-xx-viewCache=false#comcnhibtpprapproval-display\"",
+        "start-local-fake": "fiori run --config ./ui5-local-fake.yaml --open \"test/flpSandbox.html?sap-ui-xx-viewCache=false#comcnhibtpprapproval-display\"",
         "build": "ui5 build --config=ui5.yaml --clean-dest --dest dist",
         "deploy": "fiori cfDeploy",
         "deploy-config": "fiori add deploy-config",

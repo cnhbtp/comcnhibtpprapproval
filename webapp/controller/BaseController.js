@@ -61,6 +61,9 @@ sap.ui.define([
             return oControl;
         },
 
+        getIconForMimeType: function(sMimeType) {
+            return sap.ui.core.IconPool.getIconForMimeType(sMimeType)
+        },
 
         _getPRListPromise: function (busyIndicatorId) {
             var that = this;
