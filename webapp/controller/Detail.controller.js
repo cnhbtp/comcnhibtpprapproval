@@ -252,7 +252,9 @@ sap.ui.define([
                         that.loadBusyIndicator("ObjectPageLayout",false);
                         if(oData.d && oData.d.results && oData.d.results.length > 0){
                             if (oData.d.results.length === 1) {
-                                oLocalModel.setProperty("/ApproverForceSelection",true)
+                                oLocalModel.setProperty("/ApproverForceSelection",true);
+                                var property = that.getView().getBindingContext("LocalModel").getPath()
+                                oLocalModel.setProperty(property + "/selNextApprover",oData.d.results[0].email + "|" + oData.d.results[0].level);
                             }
                             oLocalModel.setProperty("/ApproverList", oData.d.results);
                             oLocalModel.setProperty("/dynNextApprTitle", oData.d.results[0].level);
@@ -313,15 +315,58 @@ sap.ui.define([
                     Frgzu: sAction
                 };
                 BusyIndicator.show();
-                oDataModel.update(sPath,oPayload,{
-                    success: function(oData, oRes){
+                //oDataModel.update(sPath,oPayload,{
+                var sUrl = oDataModel.sServiceUrl + sPath;
+                $.ajax({
+                    url: sUrl,
+                    type: "head",
+                    headers: { 'x-csrf-token': 'Fetch' },
+                    success: function(data, textStatus, oRes){
+                        var crfsToken = oRes.getResponseHeader('x-csrf-token');
+                        $.ajax({
+                            url: sUrl,
+                            contentType: 'application/json;charset=utf-8',
+                            headers: { 
+                                'x-csrf-token': crfsToken,
+                             },
+                            dataType: 'json',
+                            type: 'put',
+                            data: JSON.stringify(oPayload),
+                            success: function(oData, oRes){
+                                BusyIndicator.hide();
+                                if(sAction === 'A'){
+                                    that._onApproveToCAPM();
+                                } else if(sAction === 'S'){
+                                    that._onSubmitToCAPM();
+                                } else if(sAction === 'R'){
+                                    that._onRejectToCAPM();
+                                }
+                            },
+                            error: function(oError) {
+                                BusyIndicator.hide();
+                                try {
+                                    if(oError && oError.responseText && JSON.parse(oError.responseText)){
+                                        MessageBox.error(JSON.parse(oError.responseText).error.message.value);
+                                    }
+                                } catch (error) {
+                                    if(oError && oError.responseText){
+                                        MessageBox.error(oError.responseText);
+                                    }
+                                }
+                                
+                            }
+                        });
+                    },
+                    error: function(oError) {
                         BusyIndicator.hide();
-                        if(sAction === 'A'){
-                            that._onApproveToCAPM();
-                        } else if(sAction === 'S'){
-                            that._onSubmitToCAPM();
-                        } else if(sAction === 'R'){
-                            that._onRejectToCAPM();
+                        try {
+                            if(oError && oError.responseText && JSON.parse(oError.responseText)){
+                                MessageBox.error(JSON.parse(oError.responseText).error.message.value);
+                            }
+                        } catch (error) {
+                            if(oError && oError.responseText){
+                                MessageBox.error(oError.responseText);
+                            }
                         }
                     }
                 });
