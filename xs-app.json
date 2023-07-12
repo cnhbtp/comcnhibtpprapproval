@@ -10,11 +10,11 @@
       "csrfProtection": false
     },
     {
-        "authenticationType": "xsuaa",
-        "csrfProtection": false,
         "source": "^/api/(.*)$",
+        "target": "/api/$1",
         "destination": "PRAPPROVAL_CAPMSRV",
-        "target": "/api/$1"
+        "authenticationType": "xsuaa",
+        "csrfProtection": false
     },
     {
       "source": "^/resources/(.*)$",

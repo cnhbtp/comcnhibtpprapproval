@@ -1,0 +1,14 @@
+[
+    {
+        "persnum": "0006798211",
+        "name": "User Approver",
+        "level": "F2",
+        "email": "UserApprover@example.com"
+    },
+    {
+        "persnum": "1",
+        "name": "Buyer Workload",
+        "level": "PU",
+        "email": ""
+    }
+]

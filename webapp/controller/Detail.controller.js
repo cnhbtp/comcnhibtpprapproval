@@ -104,18 +104,115 @@ sap.ui.define([
             /* internal methods                                            */
             /* =========================================================== */
 
+            onPressComment: function (oEvent)  {
+                if (!this.oItemCommentsDlg) {
+                    this.oItemCommentsDlg = sap.ui.xmlfragment("com.cnhi.btp.prapproval.fragment.ItemComment", this);
+                    // to get access to the controller's model
+                    this.getView().addDependent(this.oItemCommentsDlg);
+                }
+
+                this.oItemCommentsDlg.setBindingContext(oEvent.getSource().getBindingContext("LocalModel"),"LocalModel");
+                this.oItemCommentsDlg.open();
+            },
+
+            onItemCommentClose: function(oEvent) {
+                this.oItemCommentsDlg.close();
+            },
+
+            onGetDocument: function(oEvent) {
+                /*
+                var oLocalModel = this.getModel("LocalModel");
+                
+                var oDataModel = this.getModel();
+                var sServiceUrl = oDataModel.sServiceUrl;
+                window.open(`${sServiceUrl}/AttachmentSet('${oBindingCtx.Banfn})/$value`,"_self");
+                */
+                var oView = this.getView();
+                var oBindingCtx = oView.getBindingContext("LocalModel").getObject();
+                if (!this.oAttachmentPopup) {
+                    this.oAttachmentPopup = sap.ui.xmlfragment(oView.getId(), "com.cnhi.btp.prapproval.fragment.AttachmentDetail", this);
+                    // to get access to the controller's model
+                    oView.addDependent(this.oAttachmentPopup);
+                }
+                var aFilter = [];
+                aFilter.push(new Filter({
+                    path: "Banfn",
+                    operator: FilterOperator.EQ,
+                    value1: oBindingCtx.Banfn,
+                    value2: undefined
+                }));
+                var oListAttachments = oView.byId('idListAttachments');
+                var oListItemBinding = oListAttachments.getBinding("items");
+                if (oListItemBinding === undefined){
+                    oListAttachments.bindItems({
+                        path: "/AttachmentSet",
+                        //filters: aFilter,
+                        template: oView.byId('idListAttachmentsItem'),
+                        templateShareable: false,
+                        events: {
+                            dataRequested: function () {
+                                oView.byId("idListAttachments").setBusy(true);
+                            },
+                            dataReceived: function () {
+                                oView.byId("idListAttachments").setBusy(false);
+                            }
+                        }
+                    });
+                    var oListItemBinding = oListAttachments.getBinding("items");
+                    oListItemBinding.filter(aFilter);
+                    oView.byId("idListAttachments").setBusy(true);
+                } else {
+                    oListItemBinding.aFilters = null;
+                    oListItemBinding.filter(aFilter);
+                    oView.getModel().refresh(true);
+                    oView.byId("idListAttachments").setBusy(true);
+                }
+                //this.oItemDetailDlg.setBindingContext(oEvent.getSource().getParent().oBindingContexts);
+                this.oAttachmentPopup.open();
+            },
+
+            onAttachmentPopupClose: function (oEvent) {
+                this.oAttachmentPopup.close();
+            },
+            onAttachmentDownload: function(oEvent) {
+                var sSrc = oEvent.getSource().data('downall');
+                var oDataModel = this.getModel();
+                var sServiceUrl = oDataModel.sServiceUrl;
+                if ( sSrc === 'All' ) {
+                    var oBindingCtx = this.getView().getBindingContext('LocalModel').getObject();
+                    window.open(`${sServiceUrl}/AttachmentStreamSet(Banfn='${oBindingCtx.Banfn}',FileName='')/$value`,"_blank");
+                } else {
+                    var oDataModel = this.getModel();
+                    var sServiceUrl = oDataModel.sServiceUrl;
+                    var oSource = oEvent.getSource();
+                    var oSrcBindingCtx = oSource.getBindingContext();
+                    var oSrcModelItem = oSrcBindingCtx.getObject();
+                    window.open(`${sServiceUrl}/AttachmentStreamSet(Clmno='${oSrcModelItem.Banfn}',FileName='${ oSrcModelItem.FileName }')/$value`,"_blank");
+                }
+            },
+
             /**
              * Binds the view to the object path.
              * @function
              * @param {sap.ui.base.Event} oEvent pattern match event in route 'object'
              * @private
              */
-            _onObjectMatched : function (oEvent) {
+            _onObjectMatched : async function (oEvent) {
                 var oArguments =  oEvent.getParameter("arguments");
                 var sPR = oArguments.pr;
                 var oLocalModel = this.getModel("LocalModel");
                 // var aLevel = oLocalModel.getProperty("/sequence");
                 // var aNextAppList = oLocalModel.getProperty("/NextApprovers");
+                var aResult = oLocalModel.getProperty("/Results");
+                if (aResult == undefined) {
+                    try {
+                        await this._getPRListPromise("ObjectPageLayout");
+                    }
+                    catch (error) {
+                        console.log(error);
+                    }
+                }
+
                 var iSelIdx = oLocalModel.getProperty("/Results").findIndex(function(el){
                     return el.Banfn === sPR;
                 });
@@ -143,6 +240,7 @@ sap.ui.define([
                 var sUrl = oDataModel.sServiceUrl + "/ApproverSet";
                 oLocalModel.setProperty("/ApproverList",[]);
                 that.loadBusyIndicator("ObjectPageLayout",true);
+                oLocalModel.setProperty("/ApproverForceSelection",false)
                 $.ajax({
                     url: sUrl,
                     dataType: 'JSON',
@@ -153,9 +251,15 @@ sap.ui.define([
                     success: function(oData) {
                         that.loadBusyIndicator("ObjectPageLayout",false);
                         if(oData.d && oData.d.results && oData.d.results.length > 0){
+                            if (oData.d.results.length === 1) {
+                                oLocalModel.setProperty("/ApproverForceSelection",true);
+                                var property = that.getView().getBindingContext("LocalModel").getPath()
+                                oLocalModel.setProperty(property + "/selNextApprover",oData.d.results[0].email + "|" + oData.d.results[0].level);
+                            }
                             oLocalModel.setProperty("/ApproverList", oData.d.results);
                             oLocalModel.setProperty("/dynNextApprTitle", oData.d.results[0].level);
                         }
+
                     },
                     error: function(oError) {
                         that.loadBusyIndicator("ObjectPageLayout",false);
@@ -211,15 +315,58 @@ sap.ui.define([
                     Frgzu: sAction
                 };
                 BusyIndicator.show();
-                oDataModel.update(sPath,oPayload,{
-                    success: function(oData, oRes){
+                //oDataModel.update(sPath,oPayload,{
+                var sUrl = oDataModel.sServiceUrl + sPath;
+                $.ajax({
+                    url: oDataModel.sServiceUrl + "/",
+                    type: "head",
+                    headers: { 'x-csrf-token': 'Fetch' },
+                    success: function(data, textStatus, oRes){
+                        var crfsToken = oRes.getResponseHeader('x-csrf-token');
+                        $.ajax({
+                            url: sUrl,
+                            contentType: 'application/json;charset=utf-8',
+                            headers: { 
+                                'x-csrf-token': crfsToken,
+                             },
+                            dataType: 'json',
+                            type: 'put',
+                            data: JSON.stringify(oPayload),
+                            success: function(oData, oRes){
+                                BusyIndicator.hide();
+                                if(sAction === 'A'){
+                                    that._onApproveToCAPM();
+                                } else if(sAction === 'S'){
+                                    that._onSubmitToCAPM();
+                                } else if(sAction === 'R'){
+                                    that._onRejectToCAPM();
+                                }
+                            },
+                            error: function(oError) {
+                                BusyIndicator.hide();
+                                try {
+                                    if(oError && oError.responseText && JSON.parse(oError.responseText)){
+                                        MessageBox.error(JSON.parse(oError.responseText).error.message.value);
+                                    }
+                                } catch (error) {
+                                    if(oError && oError.responseText){
+                                        MessageBox.error(oError.responseText);
+                                    }
+                                }
+                                
+                            }
+                        });
+                    },
+                    error: function(oError) {
                         BusyIndicator.hide();
-                        if(sAction === 'A'){
-                            that._onApproveToCAPM();
-                        } else if(sAction === 'S'){
-                            that._onSubmitToCAPM();
-                        } else if(sAction === 'R'){
-                            that._onRejectToCAPM();
+                        try {
+                            if(oError && oError.responseText && JSON.parse(oError.responseText)){
+                                MessageBox.error(JSON.parse(oError.responseText).error.message.value);
+                            }
+                        } catch (error) {
+                            if(oError && oError.responseText){
+                                MessageBox.error(oError.responseText);
+                            }
                         }
                     }
                 });

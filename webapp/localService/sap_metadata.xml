@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZBTP_POC1_GTW_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="Approver" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="persnum" />
+                </Key>
+                <Property Name="persnum" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Emp ID" sap:creatable="false" sap:updatable="false" />
+                <Property Name="name" Type="Edm.String" Nullable="false" MaxLength="80" sap:label="Name" sap:creatable="false" sap:updatable="false" />
+                <Property Name="level" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Release Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="email" Type="Edm.String" Nullable="false" MaxLength="241" sap:label="E-Mail" sap:creatable="false" sap:updatable="false" sap:sortable="false" />
+            </EntityType>
+            <EntityType Name="eban" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Banfn" />
+                    <PropertyRef Name="Bnfpo" />
+                </Key>
+                <Property Name="Lifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Desired Vendor" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="Banfn" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Purchase Req." sap:creatable="false" sap:updatable="false" sap:filterable="false" />
+                <Property Name="Bednr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Tracking Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="Blckt" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Blocking Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="Bsakz" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="Eprofile" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Procurement prof." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="Frggr" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Release group" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="Zzfgpibsubsyst" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Release Code Descr" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="Waers" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Currency" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code" />
+                <Property Name="Bnfpo" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Requisn Item" sap:creatable="false" sap:updatable="false" sap:filterable="false" />
+                <Property Name="Lfdat" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="Delivery Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="Loekz" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Deletion Ind." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="ZzfgpIbsorig" Type="Edm.String" Nullable="false" MaxLength="26" sap:label="ZZFGP_IBSORIG" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="Bsart" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Document Type" sap:creatable="false" sap:updatable="false" sap:filterable="false" />
+                <Property Name="Frgdt" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="Release Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="Statu" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Processing stat" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="Bstyp" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Doc. Category" sap:creatable="false" sap:updatable="false" sap:filterable="false" />
+                <Property Name="Estkz" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Creation Ind." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="Preis" Type="Edm.Decimal" Nullable="false" Precision="12" Scale="3" sap:unit="Waers" sap:label="Valuation Price" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="Erdat" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="Changed on" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="Frgkz" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Release ind." sap:creatable="false" sap:updatable="false" sap:filterable="false" />
+                <Property Name="Peinh" Type="Edm.Decimal" Nullable="false" Precision="8" Scale="3" sap:label="Price Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="Badat" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="Requisn Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="Emlif" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Vendor" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="Frgzu" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Release status" sap:creatable="false" sap:updatable="false" sap:filterable="false" />
+                <Property Name="Frgst" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Rel. Strategy" sap:creatable="false" sap:updatable="false" sap:filterable="false" />
+                <Property Name="Ekgrp" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Purch. Group" sap:creatable="false" sap:updatable="false" sap:filterable="false" />
+                <Property Name="Ernam" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Created by" sap:creatable="false" sap:updatable="false" />
+                <Property Name="Afnam" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Requisitioner" sap:creatable="false" sap:updatable="false" sap:filterable="false" />
+                <Property Name="Txz01" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Short Text" sap:creatable="false" sap:updatable="false" sap:filterable="false" />
+                <Property Name="Matnr" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:filterable="false" />
+                <Property Name="Werks" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:filterable="false" />
+                <Property Name="Lgort" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Stor. Location" sap:creatable="false" sap:updatable="false" sap:filterable="false" />
+                <Property Name="Matkl" Type="Edm.String" Nullable="false" MaxLength="9" sap:label="Material Group" sap:creatable="false" sap:updatable="false" sap:filterable="false" />
+                <Property Name="Menge" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unit="Meins" sap:label="Quantity" sap:creatable="false" sap:updatable="false" sap:filterable="false" />
+                <Property Name="Meins" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Unit of Measure" sap:creatable="false" sap:updatable="false" sap:filterable="false" sap:semantics="unit-of-measure" />
+                <Property Name="HasComment" Type="Edm.Boolean" Nullable="false" sap:label="Has Comment" sap:creatable="false" sap:updatable="false" sap:filterable="false"  />
+                <Property Name="HasDocument" Type="Edm.Boolean" Nullable="false"  sap:label="Has Document" sap:creatable="false" sap:updatable="false" sap:filterable="false"  />
+                <Property Name="SapComment" Type="Edm.String" Nullable="false"  sap:label="Comment" sap:creatable="false" sap:updatable="false" sap:filterable="false"  />
+                <Property Name="HasItemComment" Type="Edm.Boolean" Nullable="false" sap:label="Has Item Comment" sap:creatable="false" sap:updatable="false" sap:filterable="false"  />
+                <Property Name="SapItemComment" Type="Edm.String" Nullable="false"  sap:label="Item Comment" sap:creatable="false" sap:updatable="false" sap:filterable="false"  />
+            </EntityType>
+            <EntityContainer Name="ZBTP_POC1_GTW_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json">
+                <EntitySet Name="ApproverSet" EntityType="ZBTP_POC1_GTW_SRV.Approver" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1" />
+                <EntitySet Name="ebanSet" EntityType="ZBTP_POC1_GTW_SRV.eban" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1" />
+            </EntityContainer>
+            <atom:link rel="self" href="https://sapern.cnh.com:44302/sap/opu/odata/sap/ZBTP_POC1_GTW_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom" />
+            <atom:link rel="latest-version" href="https://sapern.cnh.com:44302/sap/opu/odata/sap/ZBTP_POC1_GTW_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom" />
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

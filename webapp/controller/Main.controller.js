@@ -1,5 +1,6 @@
 sap.ui.define([
     "./BaseController",
+    "sap/base/util/UriParameters",
     "sap/m/MessageBox",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
@@ -8,7 +9,7 @@ sap.ui.define([
     "sap/ui/model/Sorter",
     "com/cnhi/btp/prapproval/model/ReqHelper"
 ],
-    function (BaseController, MessageBox, Filter, FilterOperator, MessageToast, History, Sorter, ReqHelper) {
+    function (BaseController, UriParameters, MessageBox, Filter, FilterOperator, MessageToast, History, Sorter, ReqHelper) {
         "use strict";
         var sServiceUrl;
         return BaseController.extend("com.cnhi.btp.prapproval.controller.Main", {
@@ -22,12 +23,18 @@ sap.ui.define([
              * @public
              */
             onInit: function () {
+                /*var sParam = UriParameters.fromURL(window.location.hash.substring(1)).get("detail");
+                if (sParam !== undefined && sParam !== null) {
+                  this.getRouter().navTo("detail", {
+                    pr: sParam,
+                  });
+                }*/
                 sServiceUrl = this.getOwnerComponent().getModel("PRApprovalCAP").sServiceUrl;
                 this.getRouter().getRoute("main").attachPatternMatched(this._onObjectMatched, this);
                 
             },
             _onObjectMatched: function(){
-                this._getPRList();
+                this._getPRListPromise("page");
                 //this._getPRFromCAPM();
             },
 
@@ -99,7 +106,7 @@ sap.ui.define([
                                 }
                             }
                             oLocalModel.setProperty("/EbanResults", $.extend(true,[],aFinal));
-                            that._getPRFromCAPM();
+                            that._getPRFromCAPMPromise("page");
                         }
                     }
                 });
@@ -142,7 +149,7 @@ sap.ui.define([
                                     aResults[i]['IsRequestor'] = false;
                                     aResults[i]['IsApprover'] = true;
                                     aResults[i]['id'] = oRes.value[iIdx].id;
-                                    aResults[i]['nextApprover'] = sLoggedInUserID;
+                                    aResults[i]['nextApprover'] = sLoggedInUserID !== undefined ? sLoggedInUserID : oRes.value[iIdx].nextApprover;
                                     aResults[i]['uistatus'] = 'Waiting for '+aResults[i]['Eprofile']+' approval';
                                     aResults[i]['uistatusstate'] = 'Indication04';
                                     aResults[i]['status'] = aResults[i]['Eprofile'];

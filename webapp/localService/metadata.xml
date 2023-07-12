@@ -1,76 +1,124 @@
-<?xml version="1.0" encoding="utf-8"?>
-<edmx:Edmx Version="4.0"
-    xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
     <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
-        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1" />
     </edmx:Reference>
     <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
-        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1" />
     </edmx:Reference>
     <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
-        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1" />
     </edmx:Reference>
     <edmx:DataServices>
-        <Schema Namespace="ZPRAPPROVALSRV"
-            xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ZPRAPPROVALSRV">
             <EntityContainer Name="EntityContainer">
                 <EntitySet Name="PurchaceReqSet" EntityType="ZPRAPPROVALSRV.PurchaceReqSet">
-                    <NavigationPropertyBinding Path="comments" Target="CommentsSet"/>
+                    <NavigationPropertyBinding Path="comments" Target="CommentSet" />
+                    <NavigationPropertyBinding Path="history" Target="HistorySet" />
                 </EntitySet>
-                <EntitySet Name="CommentsSet" EntityType="ZPRAPPROVALSRV.CommentsSet">
-                    <NavigationPropertyBinding Path="prID" Target="PurchaceReqSet"/>
+                <EntitySet Name="CommentSet" EntityType="ZPRAPPROVALSRV.CommentSet">
+                    <NavigationPropertyBinding Path="prID" Target="PurchaceReqSet" />
+                </EntitySet>
+                <EntitySet Name="HistorySet" EntityType="ZPRAPPROVALSRV.HistorySet">
+                    <NavigationPropertyBinding Path="prID" Target="PurchaceReqSet" />
                 </EntitySet>
             </EntityContainer>
             <EntityType Name="PurchaceReqSet">
                 <Key>
-                    <PropertyRef Name="id"/>
+                    <PropertyRef Name="id" />
                 </Key>
-                <Property Name="id" Type="Edm.Guid" Nullable="false"/>
-                <Property Name="pr" Type="Edm.String"/>
-                <Property Name="status" Type="Edm.String"/>
-                <Property Name="nextApprover" Type="Edm.String"/>
-                <Property Name="requestor" Type="Edm.String"/>
-                <NavigationProperty Name="comments" Type="Collection(ZPRAPPROVALSRV.CommentsSet)" Partner="prID"/>
+                <Property Name="id" Type="Edm.Guid" Nullable="false" />
+                <Property Name="pr" Type="Edm.String" />
+                <Property Name="status" Type="Edm.String" />
+                <Property Name="nextApprover" Type="Edm.String" />
+                <Property Name="requestor" Type="Edm.String" />
+                <NavigationProperty Name="comments" Type="Collection(ZPRAPPROVALSRV.CommentSet)" Partner="prID" />
+                <NavigationProperty Name="history" Type="Collection(ZPRAPPROVALSRV.HistorySet)" Partner="prID" />
             </EntityType>
-            <EntityType Name="CommentsSet">
+            <EntityType Name="CommentSet">
                 <Key>
-                    <PropertyRef Name="id"/>
+                    <PropertyRef Name="id" />
                 </Key>
-                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
-                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
-                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
-                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
-                <Property Name="id" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7" />
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255" />
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7" />
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255" />
+                <Property Name="id" Type="Edm.Guid" Nullable="false" />
                 <NavigationProperty Name="prID" Type="ZPRAPPROVALSRV.PurchaceReqSet" Partner="comments">
-                    <ReferentialConstraint Property="prID_id" ReferencedProperty="id"/>
+                    <ReferentialConstraint Property="prID_id" ReferencedProperty="id" />
                 </NavigationProperty>
-                <Property Name="prID_id" Type="Edm.Guid"/>
-                <Property Name="comment" Type="Edm.String"/>
-                <Property Name="user" Type="Edm.String"/>
+                <Property Name="prID_id" Type="Edm.Guid" />
+                <Property Name="pr" Type="Edm.String" />
+                <Property Name="type" Type="Edm.String" />
+                <Property Name="comment" Type="Edm.String" />
+                <Property Name="user" Type="Edm.String" />
+                <Property Name="authorID" Type="Edm.String" />
+                <Property Name="authorName" Type="Edm.String" />
             </EntityType>
-            <Annotations Target="ZPRAPPROVALSRV.CommentsSet/createdAt">
-                <Annotation Term="UI.HiddenFilter" Bool="true"/>
-                <Annotation Term="Core.Immutable" Bool="true"/>
-                <Annotation Term="Core.Computed" Bool="true"/>
-                <Annotation Term="Common.Label" String="Created On"/>
+            <EntityType Name="HistorySet">
+                <Key>
+                    <PropertyRef Name="id" />
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7" />
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255" />
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7" />
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255" />
+                <Property Name="id" Type="Edm.Guid" Nullable="false" />
+                <NavigationProperty Name="prID" Type="ZPRAPPROVALSRV.PurchaceReqSet" Partner="history">
+                    <ReferentialConstraint Property="prID_id" ReferencedProperty="id" />
+                </NavigationProperty>
+                <Property Name="prID_id" Type="Edm.Guid" />
+                <Property Name="pr" Type="Edm.String" />
+                <Property Name="status" Type="Edm.String" />
+                <Property Name="userID" Type="Edm.String" />
+                <Property Name="userName" Type="Edm.String" />
+            </EntityType>
+            <Annotations Target="ZPRAPPROVALSRV.CommentSet/createdAt">
+                <Annotation Term="UI.HiddenFilter" Bool="true" />
+                <Annotation Term="Core.Immutable" Bool="true" />
+                <Annotation Term="Core.Computed" Bool="true" />
+                <Annotation Term="Common.Label" String="Data di creazione" />
             </Annotations>
-            <Annotations Target="ZPRAPPROVALSRV.CommentsSet/createdBy">
-                <Annotation Term="UI.HiddenFilter" Bool="true"/>
-                <Annotation Term="Core.Immutable" Bool="true"/>
-                <Annotation Term="Core.Computed" Bool="true"/>
-                <Annotation Term="Core.Description" String="User's unique ID"/>
-                <Annotation Term="Common.Label" String="Created By"/>
+            <Annotations Target="ZPRAPPROVALSRV.CommentSet/createdBy">
+                <Annotation Term="UI.HiddenFilter" Bool="true" />
+                <Annotation Term="Core.Immutable" Bool="true" />
+                <Annotation Term="Core.Computed" Bool="true" />
+                <Annotation Term="Core.Description" String="ID univoco utente" />
+                <Annotation Term="Common.Label" String="Autore creazione" />
             </Annotations>
-            <Annotations Target="ZPRAPPROVALSRV.CommentsSet/modifiedAt">
-                <Annotation Term="UI.HiddenFilter" Bool="true"/>
-                <Annotation Term="Core.Computed" Bool="true"/>
-                <Annotation Term="Common.Label" String="Changed On"/>
+            <Annotations Target="ZPRAPPROVALSRV.CommentSet/modifiedAt">
+                <Annotation Term="UI.HiddenFilter" Bool="true" />
+                <Annotation Term="Core.Computed" Bool="true" />
+                <Annotation Term="Common.Label" String="Data di modifica" />
             </Annotations>
-            <Annotations Target="ZPRAPPROVALSRV.CommentsSet/modifiedBy">
-                <Annotation Term="UI.HiddenFilter" Bool="true"/>
-                <Annotation Term="Core.Computed" Bool="true"/>
-                <Annotation Term="Core.Description" String="User's unique ID"/>
-                <Annotation Term="Common.Label" String="Changed By"/>
+            <Annotations Target="ZPRAPPROVALSRV.CommentSet/modifiedBy">
+                <Annotation Term="UI.HiddenFilter" Bool="true" />
+                <Annotation Term="Core.Computed" Bool="true" />
+                <Annotation Term="Core.Description" String="ID univoco utente" />
+                <Annotation Term="Common.Label" String="Autore modifica" />
+            </Annotations>
+            <Annotations Target="ZPRAPPROVALSRV.HistorySet/createdAt">
+                <Annotation Term="UI.HiddenFilter" Bool="true" />
+                <Annotation Term="Core.Immutable" Bool="true" />
+                <Annotation Term="Core.Computed" Bool="true" />
+                <Annotation Term="Common.Label" String="Data di creazione" />
+            </Annotations>
+            <Annotations Target="ZPRAPPROVALSRV.HistorySet/createdBy">
+                <Annotation Term="UI.HiddenFilter" Bool="true" />
+                <Annotation Term="Core.Immutable" Bool="true" />
+                <Annotation Term="Core.Computed" Bool="true" />
+                <Annotation Term="Core.Description" String="ID univoco utente" />
+                <Annotation Term="Common.Label" String="Autore creazione" />
+            </Annotations>
+            <Annotations Target="ZPRAPPROVALSRV.HistorySet/modifiedAt">
+                <Annotation Term="UI.HiddenFilter" Bool="true" />
+                <Annotation Term="Core.Computed" Bool="true" />
+                <Annotation Term="Common.Label" String="Data di modifica" />
+            </Annotations>
+            <Annotations Target="ZPRAPPROVALSRV.HistorySet/modifiedBy">
+                <Annotation Term="UI.HiddenFilter" Bool="true" />
+                <Annotation Term="Core.Computed" Bool="true" />
+                <Annotation Term="Core.Description" String="ID univoco utente" />
+                <Annotation Term="Common.Label" String="Autore modifica" />
             </Annotations>
         </Schema>
     </edmx:DataServices>

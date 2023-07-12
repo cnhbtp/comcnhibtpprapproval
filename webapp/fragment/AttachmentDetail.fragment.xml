@@ -1,0 +1,58 @@
+<core:FragmentDefinition
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+>
+    <Dialog
+        title="{i18n>attachment}"
+        contentWidth="50em"
+        busyIndicatorDelay="0"
+        class="sapUiSizeCompact"
+    >
+        <VBox class="sapUiSmallMargin">
+            <List
+                id="idListAttachments"
+                showSeparators="Inner"
+            >
+                <items>
+                    <FeedListItem
+                        id="idListAttachmentsItem"
+                        timestamp="{path: 'CreateDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}"
+                        sender="{CreatedBy}"
+                        senderActive="false"
+                        iconDisplayShape="Square"
+                        iconPress="onAttachmentDownload"
+                        info="{MimeType}"
+                        text="{FileName}"
+                        icon="{path: 'MimeType', formatter: '.getIconForMimeType'}"
+                        convertLinksToAnchorTags="None"
+                    >
+                        <FeedListItemAction
+                            text="{i18n>download}"
+                            icon="sap-icon://download"
+                            key="Download"
+                            press="onAttachmentDownload"
+                        />
+                    </FeedListItem>
+                </items>
+            </List>
+        </VBox>
+        <buttons>
+            <Button
+                icon="sap-icon://attachment-zip-file"
+                text="{i18n>downloadAll}"
+                press="onAttachmentDownload"
+            >
+                <customData>
+                    <core:CustomData key="downall" value="All"/>
+                </customData>
+            </Button>
+            <Button
+                text="{i18n>close}"
+                press="onAttachmentPopupClose"
+            />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

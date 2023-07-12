@@ -25,7 +25,7 @@
 		<headerContent>
 			<m:FlexBox wrap="Wrap">
 				<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
-                    <m:ObjectNumber number="Document Type:" unit="{LocalModel>Bsart}"/>
+                    <m:ObjectNumber number="{i18n>Bsart}:" unit="{LocalModel>Bsart}"/>
 					<m:ObjectNumber number="Release Group:" unit="{LocalModel>Frggr}"/>
 				</layout:VerticalLayout>
 
@@ -41,123 +41,138 @@
 					<ObjectPageSubSection title="" titleUppercase="false">
 						<blocks>
                         <smartTable:SmartTable id="prItemsSmartTbl" busyIndicatorDelay="0" entitySet="ebanSet" tableBindingPath="LocalModel>Items" tableType="Table" showTablePersonalisation="true" useVariantManagement="false"
-                            header="Items" persistencyKey="prItemsSmartTbl" enableAutoBinding="true" ignoreFromPersonalisation="Frgst,Emlif"
-                            showRowCount="true" showFullScreenButton="true" useExportToExcel="false" >
+                            header="Items" persistencyKey="prItemsSmartTbl" enableAutoBinding="true" ignoreFromPersonalisation="Frgst,Emlif" ignoredFields="HasComment,HasDocument,SapComment,SapItemComment,HasItemComment"
+                            showRowCount="true" showFullScreenButton="true" enableExport="false" >
+                            <smartTable:customToolbar>
+                                <m:OverflowToolbar design="Transparent">
+                                	<m:ToolbarSpacer/>
+                                    <m:OverflowToolbarButton icon="sap-icon://attachment" visible="{= ${LocalModel>HasDocument} }" tooltip="{i18n>attachment}" press="onGetDocument"/>
+                                </m:OverflowToolbar>
+                            </smartTable:customToolbar>
                             <ui:Table
                                 visibleRowCount="5" visibleRowCountMode="Auto" rowsUpdated="onTableUpdated"
                                 selectionMode="None">
                                 <ui:columns>
+                                    <ui:Column width="2em">
+                                        <ui:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "SapItemComment", "columnIndex":"0", "filterProperty": "SapItemComment", "sortProperty": "SapItemComment", "type":"string", "leadingProperty": "SapItemComment"}'/>
+                                        </ui:customData>
+                                        <m:Label text="{/#eban/SapItemComment/@sap:label}" visible="false"/>
+                                        <ui:template>
+                                                <core:Icon src="sap-icon://document-text"  class="sapMLnk" tooltip="Open Item Comment" press="onPressComment" visible="{LocalModel>HasItemComment}"></core:Icon>
+                                        </ui:template>
+                                    </ui:Column>
                                     <ui:Column width="6em">
                                         <ui:customData>
-                                            <core:CustomData key="p13nData" value='\{"columnKey": "Bnfpo", "columnIndex":"0", "filterProperty": "Bnfpo", "sortProperty": "Bnfpo", "type":"string", "leadingProperty": "Bnfpo"}'/>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Bnfpo", "columnIndex":"1", "filterProperty": "Bnfpo", "sortProperty": "Bnfpo", "type":"string", "leadingProperty": "Bnfpo"}'/>
                                         </ui:customData>
                                         <m:Label text="Item #" />
                                         <ui:template>
-                                            <m:Text text="{LocalModel>Bnfpo}" wrapping="false" />
+                                            <m:Text text="{LocalModel>Bnfpo}" />                                               
                                         </ui:template>
                                     </ui:Column>
                                     <ui:Column width="10em">
                                         <ui:customData>
-                                            <core:CustomData key="p13nData" value='\{"columnKey": "Badat", "columnIndex":"1", "filterProperty": "Badat", "sortProperty": "Badat", "type":"string", "leadingProperty": "Badat"}'/>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Badat", "columnIndex":"2", "filterProperty": "Badat", "sortProperty": "Badat", "type":"string", "leadingProperty": "Badat"}'/>
                                         </ui:customData>
-                                        <m:Label text="Creation Date" />
+                                        <m:Label text="{i18n>creationDate}" />
                                         <ui:template>
                                             <m:Text text="{path: 'LocalModel>Badat', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}" wrapping="false" />
                                         </ui:template>
                                     </ui:Column>
                                     <ui:Column width="10em">
                                         <ui:customData>
-                                            <core:CustomData key="p13nData" value='\{"columnKey": "Txz01", "columnIndex":"2", "filterProperty": "Txz01", "sortProperty": "Txz01", "type":"string", "leadingProperty": "Txz01"}'/>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Txz01", "columnIndex":"3", "filterProperty": "Txz01", "sortProperty": "Txz01", "type":"string", "leadingProperty": "Txz01"}'/>
                                         </ui:customData>
-                                        <m:Label text="Short text" />
+                                        <m:Label text="{/#eban/Txz01/@sap:label}" />
                                         <ui:template>
                                             <m:Text text="{LocalModel>Txz01}" wrapping="false" />
                                         </ui:template>
                                     </ui:Column>
                                     <ui:Column width="7em">
                                         <ui:customData>
-                                            <core:CustomData key="p13nData" value='\{"columnKey": "Werks", "columnIndex":"3", "filterProperty": "Werks", "sortProperty": "Werks", "type":"string", "leadingProperty": "Werks"}'/>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Werks", "columnIndex":"4", "filterProperty": "Werks", "sortProperty": "Werks", "type":"string", "leadingProperty": "Werks"}'/>
                                         </ui:customData>
-                                        <m:Label text="Plant" />
+                                        <m:Label text="{/#eban/Werks/@sap:label}" />
                                         <ui:template>
                                             <m:Text text="{LocalModel>Werks}" wrapping="false" />
                                         </ui:template>
                                     </ui:Column>
                                     <ui:Column width="10em">
                                         <ui:customData>
-                                            <core:CustomData key="p13nData" value='\{"columnKey": "Matkl", "columnIndex":"4", "filterProperty": "Matkl", "sortProperty": "Matkl", "type":"string", "leadingProperty": "Matkl"}'/>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Matkl", "columnIndex":"5", "filterProperty": "Matkl", "sortProperty": "Matkl", "type":"string", "leadingProperty": "Matkl"}'/>
                                         </ui:customData>
-                                        <m:Label text="Material Group" />
+                                        <m:Label text="{/#eban/Matkl/@sap:label}" />
                                         <ui:template>
                                             <m:Text text="{LocalModel>Matkl}" wrapping="false" />
                                         </ui:template>
                                     </ui:Column>
                                     <ui:Column width="9em">
                                         <ui:customData>
-                                            <core:CustomData key="p13nData" value='\{"columnKey": "Bednr", "columnIndex":"5", "filterProperty": "Bednr", "sortProperty": "Bednr", "type":"string", "leadingProperty": "Bednr"}'/>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Bednr", "columnIndex":"6", "filterProperty": "Bednr", "sortProperty": "Bednr", "type":"string", "leadingProperty": "Bednr"}'/>
                                         </ui:customData>
                                         <m:Label text="Req Tracking #" />
                                         <ui:template>
                                             <m:Text text="{LocalModel>Bednr}" wrapping="false" />
                                         </ui:template>
                                     </ui:Column>
-                                    <ui:Column width="6em">
+                                    <ui:Column hAlign="End" width="5em">
                                         <ui:customData>
-                                            <core:CustomData key="p13nData" value='\{"columnKey": "Preis", "columnIndex":"6", "filterProperty": "Preis", "sortProperty": "Preis", "type":"string", "leadingProperty": "Preis"}'/>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Preis", "columnIndex":"7", "filterProperty": "Preis", "sortProperty": "Preis", "type":"string", "leadingProperty": "Preis"}'/>
                                         </ui:customData>
-                                        <m:Label text="Price" />
+                                        <m:Label text="{i18n>Preis}" />
                                         <ui:template>
                                             <m:Text text="{LocalModel>Preis}" wrapping="false" />
                                         </ui:template>
                                     </ui:Column>
                                     <ui:Column width="6em" >
                                         <ui:customData>
-                                            <core:CustomData key="p13nData" value='\{"columnKey": "Waers", "columnIndex":"7", "filterProperty": "Waers", "sortProperty": "Waers", "type":"string", "leadingProperty": "Waers"}'/>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Waers", "columnIndex":"8", "filterProperty": "Waers", "sortProperty": "Waers", "type":"string", "leadingProperty": "Waers"}'/>
                                         </ui:customData>
-                                        <m:Label text="Currency" />
+                                        <m:Label text="{/#eban/Waers/@sap:label}" />
                                         <ui:template>
                                             <m:Text text="{LocalModel>Waers}" wrapping="false" />
                                         </ui:template>
                                     </ui:Column>
                                     <ui:Column width="12em" >
                                         <ui:customData>
-                                            <core:CustomData key="p13nData" value='\{"columnKey": "Afnam", "columnIndex":"8", "filterProperty": "Afnam", "sortProperty": "Afnam", "type":"string", "leadingProperty": "Afnam"}'/>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Afnam", "columnIndex":"9", "filterProperty": "Afnam", "sortProperty": "Afnam", "type":"string", "leadingProperty": "Afnam"}'/>
                                         </ui:customData>
-                                        <m:Label text="Name of person who created the object" />
+                                        <m:Label text="{i18n>Afnam}" />
                                         <ui:template>
                                             <m:Text text="{LocalModel>Afnam}" wrapping="false" />
                                         </ui:template>
                                     </ui:Column>
                                     <ui:Column width="10em" >
                                         <ui:customData>
-                                            <core:CustomData key="p13nData" value='\{"columnKey": "Frgdt", "columnIndex":"9", "filterProperty": "Frgdt", "sortProperty": "Frgdt", "type":"string", "leadingProperty": "Frgdt"}'/>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Frgdt", "columnIndex":"10", "filterProperty": "Frgdt", "sortProperty": "Frgdt", "type":"string", "leadingProperty": "Frgdt"}'/>
                                         </ui:customData>
-                                        <m:Label text="Release Date" />
+                                        <m:Label text="{/#eban/Frgdt/@sap:label}" />
                                         <ui:template>
-                                            <m:Text text="{LocalModel>Frgdt}" wrapping="false" />
+                                            <m:Text text="{path: 'LocalModel>Frgdt', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}" wrapping="false" />
                                         </ui:template>
                                     </ui:Column>
-                                    <ui:Column width="6em" >
+                                    <ui:Column hAlign="End" width="6em" >
                                         <ui:customData>
-                                            <core:CustomData key="p13nData" value='\{"columnKey": "Menge", "columnIndex":"10", "filterProperty": "Menge", "sortProperty": "Menge", "type":"string", "leadingProperty": "Menge"}'/>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Menge", "columnIndex":"11", "filterProperty": "Menge", "sortProperty": "Menge", "type":"string", "leadingProperty": "Menge"}'/>
                                         </ui:customData>
-                                        <m:Label text="Quantity" />
+                                        <m:Label text="{/#eban/Menge/@sap:label}" />
                                         <ui:template>
                                             <m:Text text="{LocalModel>Menge}" wrapping="false" />
                                         </ui:template>
                                     </ui:Column>
-                                    <ui:Column >
+                                    <ui:Column width="3em" >
                                         <ui:customData>
-                                            <core:CustomData key="p13nData" value='\{"columnKey": "Meins", "columnIndex":"11", "filterProperty": "Meins", "sortProperty": "Meins", "type":"string", "leadingProperty": "Meins"}'/>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Meins", "columnIndex":"12", "filterProperty": "Meins", "sortProperty": "Meins", "type":"string", "leadingProperty": "Meins"}'/>
                                         </ui:customData>
-                                        <m:Label text="Uom" tooltip="Unit of measure" />
+                                        <m:Label text="{i18n>Meins}" tooltip="{i18n>MeinsTooltip}" />
                                         <ui:template>
                                             <m:Text text="{LocalModel>Meins}" wrapping="false" />
                                         </ui:template>
                                     </ui:Column>
                                     <ui:Column width="10em" >
                                         <ui:customData>
-                                            <core:CustomData key="p13nData" value='\{"columnKey": "Rlwrt", "columnIndex":"12", "filterProperty": "Rlwrt", "sortProperty": "Rlwrt", "type":"string", "leadingProperty": "Rlwrt"}'/>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Rlwrt", "columnIndex":"13", "filterProperty": "Rlwrt", "sortProperty": "Rlwrt", "type":"string", "leadingProperty": "Rlwrt"}'/>
                                         </ui:customData>
                                         <m:Label text="Total Value at time of release" />
                                         <ui:template>
@@ -166,16 +181,16 @@
                                     </ui:Column>
                                     <ui:Column width="8em" >
                                         <ui:customData>
-                                            <core:CustomData key="p13nData" value='\{"columnKey": "Bstyp", "columnIndex":"13", "filterProperty": "Bstyp", "sortProperty": "Bstyp", "type":"string", "leadingProperty": "Bstyp"}'/>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Bstyp", "columnIndex":"14", "filterProperty": "Bstyp", "sortProperty": "Bstyp", "type":"string", "leadingProperty": "Bstyp"}'/>
                                         </ui:customData>
-                                        <m:Label text="Item Categoty" />
+                                        <m:Label text="{i18n>itemCategory}" />
                                         <ui:template>
                                             <m:Text text="{LocalModel>Bstyp}" wrapping="false" />
                                         </ui:template>
                                     </ui:Column>
                                     <ui:Column width="6em" >
                                         <ui:customData>
-                                            <core:CustomData key="p13nData" value='\{"columnKey": "Lifnr", "columnIndex":"14", "filterProperty": "Lifnr", "sortProperty": "Lifnr", "type":"string", "leadingProperty": "Lifnr"}'/>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Lifnr", "columnIndex":"15", "filterProperty": "Lifnr", "sortProperty": "Lifnr", "type":"string", "leadingProperty": "Lifnr"}'/>
                                         </ui:customData>
                                         <m:Label text="Vendor" />
                                         <ui:template>
@@ -184,51 +199,228 @@
                                     </ui:Column>
                                     <ui:Column width="10em" >
                                         <ui:customData>
-                                            <core:CustomData key="p13nData" value='\{"columnKey": "Lfdat", "columnIndex":"15", "filterProperty": "Lfdat", "sortProperty": "Lfdat", "type":"string", "leadingProperty": "Lfdat"}'/>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Lfdat", "columnIndex":"16", "filterProperty": "Lfdat", "sortProperty": "Lfdat", "type":"string", "leadingProperty": "Lfdat"}'/>
                                         </ui:customData>
-                                        <m:Label text="Delivery Date" />
+                                        <m:Label text="{/#eban/Lfdat/@sap:label}" />
                                         <ui:template>
                                             <m:Text text="{path: 'LocalModel>Lfdat', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}" wrapping="false" />
                                         </ui:template>
                                     </ui:Column>
                                     <ui:Column width="10em" >
                                         <ui:customData>
-                                            <core:CustomData key="p13nData" value='\{"columnKey": "Ekgrp", "columnIndex":"16", "filterProperty": "Ekgrp", "sortProperty": "Ekgrp", "type":"string", "leadingProperty": "Ekgrp"}'/>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Ekgrp", "columnIndex":"17", "filterProperty": "Ekgrp", "sortProperty": "Ekgrp", "type":"string", "leadingProperty": "Ekgrp"}'/>
                                         </ui:customData>
-                                        <m:Label text="Purchasing Group" />
+                                        <m:Label text="{/#eban/Ekgrp/@sap:label}" />
                                         <ui:template>
                                             <m:Text text="{LocalModel>Ekgrp}" wrapping="false" />
                                         </ui:template>
                                     </ui:Column>
                                     <ui:Column width="10em" >
                                         <ui:customData>
-                                            <core:CustomData key="p13nData" value='\{"columnKey": "Erdat", "columnIndex":"16", "filterProperty": "Erdat", "sortProperty": "Erdat", "type":"string", "leadingProperty": "Erdat"}'/>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Erdat", "columnIndex":"18", "filterProperty": "Erdat", "sortProperty": "Erdat", "type":"string", "leadingProperty": "Erdat"}'/>
                                         </ui:customData>
                                         <m:Label text="{/#eban/Erdat/@sap:label}" />
                                         <ui:template>
                                             <m:Text text="{path: 'LocalModel>Erdat', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}" wrapping="false" />
                                         </ui:template>
                                     </ui:Column>
+                                    
+                                    <!-- REGEX -->
+                                    <ui:Column sortProperty="Blckt" filterProperty="Blckt" visible="false">
+                                        <ui:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Blckt", "columnIndex":"19", "filterProperty": "Blckt", "sortProperty": "Blckt", "type":"string", "leadingProperty": "Blckt"}' />
+                                        </ui:customData>
+                                        <m:Label text="{/#eban/Blckt/@sap:label}" />
+                                        <ui:template>
+                                            <m:Text text="{LocalModel>Blckt}"  />
+                                        </ui:template>
+                                    </ui:Column>
+
+                                    <ui:Column sortProperty="Bsakz" filterProperty="Bsakz" visible="false">
+                                        <ui:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Bsakz", "columnIndex":"20", "filterProperty": "Bsakz", "sortProperty": "Bsakz", "type":"string", "leadingProperty": "Bsakz"}' />
+                                        </ui:customData>
+                                        <m:Label text="{/#eban/Bsakz/@sap:label}" />
+                                        <ui:template>
+                                            <m:Text text="{LocalModel>Bsakz}"  />
+                                        </ui:template>
+                                    </ui:Column>
+
+                                    <ui:Column sortProperty="Ernam" filterProperty="Ernam" visible="false">
+                                        <ui:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Ernam", "columnIndex":"21", "filterProperty": "Ernam", "sortProperty": "Ernam", "type":"string", "leadingProperty": "Ernam"}' />
+                                        </ui:customData>
+                                        <m:Label text="{/#eban/Ernam/@sap:label}" />
+                                        <ui:template>
+                                            <m:Text text="{LocalModel>Ernam}"  />
+                                        </ui:template>
+                                    </ui:Column>
+
+                                    <ui:Column sortProperty="Estkz" filterProperty="Estkz" visible="false">
+                                        <ui:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Estkz", "columnIndex":"22", "filterProperty": "Estkz", "sortProperty": "Estkz", "type":"string", "leadingProperty": "Estkz"}' />
+                                        </ui:customData>
+                                        <m:Label text="{/#eban/Estkz/@sap:label}" />
+                                        <ui:template>
+                                            <m:Text text="{LocalModel>Estkz}"  />
+                                        </ui:template>
+                                    </ui:Column>
+
+                                    <ui:Column sortProperty="Loekz" filterProperty="Loekz" visible="false">
+                                        <ui:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Loekz", "columnIndex":"23", "filterProperty": "Loekz", "sortProperty": "Loekz", "type":"string", "leadingProperty": "Loekz"}' />
+                                        </ui:customData>
+                                        <m:Label text="{/#eban/Loekz/@sap:label}" />
+                                        <ui:template>
+                                            <m:Text text="{LocalModel>Loekz}"  />
+                                        </ui:template>
+                                    </ui:Column>
+
+                                    <ui:Column sortProperty="Bsart" filterProperty="Bsart" visible="false">
+                                        <ui:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Bsart", "columnIndex":"24", "filterProperty": "Bsart", "sortProperty": "Bsart", "type":"string", "leadingProperty": "Bsart"}' />
+                                        </ui:customData>
+                                        <m:Label text="{/#eban/Bsart/@sap:label}" />
+                                        <ui:template>
+                                            <m:Text text="{LocalModel>Bsart}"  />
+                                        </ui:template>
+                                    </ui:Column>
+
+                                    <ui:Column sortProperty="Matnr" filterProperty="Matnr" visible="false">
+                                        <ui:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Matnr", "columnIndex":"25", "filterProperty": "Matnr", "sortProperty": "Matnr", "type":"string", "leadingProperty": "Matnr"}' />
+                                        </ui:customData>
+                                        <m:Label text="{/#eban/Matnr/@sap:label}" />
+                                        <ui:template>
+                                            <m:Text text="{LocalModel>Matnr}"  />
+                                        </ui:template>
+                                    </ui:Column>
+
+                                    <ui:Column sortProperty="Peinh" filterProperty="Peinh" visible="false">
+                                        <ui:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Peinh", "columnIndex":"26", "filterProperty": "Peinh", "sortProperty": "Peinh", "type":"string", "leadingProperty": "Peinh"}' />
+                                        </ui:customData>
+                                        <m:Label text="{/#eban/Peinh/@sap:label}" />
+                                        <ui:template>
+                                            <m:Text text="{LocalModel>Peinh}"  />
+                                        </ui:template>
+                                    </ui:Column>
+
+                                    <ui:Column sortProperty="Statu" filterProperty="Statu" visible="false">
+                                        <ui:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Statu", "columnIndex":"27", "filterProperty": "Statu", "sortProperty": "Statu", "type":"string", "leadingProperty": "Statu"}' />
+                                        </ui:customData>
+                                        <m:Label text="{/#eban/Statu/@sap:label}" />
+                                        <ui:template>
+                                            <m:Text text="{LocalModel>Statu}"  />
+                                        </ui:template>
+                                    </ui:Column>
+
+                                    <ui:Column sortProperty="Eprofile" filterProperty="Eprofile" visible="false">
+                                        <ui:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Eprofile", "columnIndex":"28", "filterProperty": "Eprofile", "sortProperty": "Eprofile", "type":"string", "leadingProperty": "Eprofile"}' />
+                                        </ui:customData>
+                                        <m:Label text="{/#eban/Eprofile/@sap:label}" />
+                                        <ui:template>
+                                            <m:Text text="{LocalModel>Eprofile}"  />
+                                        </ui:template>
+                                    </ui:Column>
+
+                                    <ui:Column sortProperty="Banfn" filterProperty="Banfn" visible="false">
+                                        <ui:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Banfn", "columnIndex":"29", "filterProperty": "Banfn", "sortProperty": "Banfn", "type":"string", "leadingProperty": "Banfn"}' />
+                                        </ui:customData>
+                                        <m:Label text="{/#eban/Banfn/@sap:label}" />
+                                        <ui:template>
+                                            <m:Text text="{LocalModel>Banfn}"  />
+                                        </ui:template>
+                                    </ui:Column>
+
+                                    <ui:Column sortProperty="Zzfgpibsubsyst" filterProperty="Zzfgpibsubsyst" visible="false">
+                                        <ui:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Zzfgpibsubsyst", "columnIndex":"30", "filterProperty": "Zzfgpibsubsyst", "sortProperty": "Zzfgpibsubsyst", "type":"string", "leadingProperty": "Zzfgpibsubsyst"}' />
+                                        </ui:customData>
+                                        <m:Label text="{/#eban/Zzfgpibsubsyst/@sap:label}" />
+                                        <ui:template>
+                                            <m:Text text="{LocalModel>Zzfgpibsubsyst}"  />
+                                        </ui:template>
+                                    </ui:Column>
+
+                                    <ui:Column sortProperty="Frggr" filterProperty="Frggr" visible="false">
+                                        <ui:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Frggr", "columnIndex":"31", "filterProperty": "Frggr", "sortProperty": "Frggr", "type":"string", "leadingProperty": "Frggr"}' />
+                                        </ui:customData>
+                                        <m:Label text="{/#eban/Frggr/@sap:label}" />
+                                        <ui:template>
+                                            <m:Text text="{LocalModel>Frggr}"  />
+                                        </ui:template>
+                                    </ui:Column>
+
+                                    <ui:Column sortProperty="Frgkz" filterProperty="Frgkz" visible="false">
+                                        <ui:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Frgkz", "columnIndex":"32", "filterProperty": "Frgkz", "sortProperty": "Frgkz", "type":"string", "leadingProperty": "Frgkz"}' />
+                                        </ui:customData>
+                                        <m:Label text="{/#eban/Frgkz/@sap:label}" />
+                                        <ui:template>
+                                            <m:Text text="{LocalModel>Frgkz}"  />
+                                        </ui:template>
+                                    </ui:Column>
+
+                                    <ui:Column sortProperty="Frgzu" filterProperty="Frgzu" visible="false">
+                                        <ui:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Frgzu", "columnIndex":"33", "filterProperty": "Frgzu", "sortProperty": "Frgzu", "type":"string", "leadingProperty": "Frgzu"}' />
+                                        </ui:customData>
+                                        <m:Label text="{/#eban/Frgzu/@sap:label}" />
+                                        <ui:template>
+                                            <m:Text text="{LocalModel>Frgzu}"  />
+                                        </ui:template>
+                                    </ui:Column>
+
+                                    <ui:Column sortProperty="Lgort" filterProperty="Lgort" visible="false">
+                                        <ui:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "Lgort", "columnIndex":"34", "filterProperty": "Lgort", "sortProperty": "Lgort", "type":"string", "leadingProperty": "Lgort"}' />
+                                        </ui:customData>
+                                        <m:Label text="{/#eban/Lgort/@sap:label}" />
+                                        <ui:template>
+                                            <m:Text text="{LocalModel>Lgort}"  />
+                                        </ui:template>
+                                    </ui:Column>
+
+                                    <ui:Column sortProperty="ZzfgpIbsorig" filterProperty="ZzfgpIbsorig" visible="false">
+                                        <ui:customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "ZzfgpIbsorig", "columnIndex":"35", "filterProperty": "ZzfgpIbsorig", "sortProperty": "ZzfgpIbsorig", "type":"string", "leadingProperty": "ZzfgpIbsorig"}' />
+                                        </ui:customData>
+                                        <m:Label text="{i18n>costCenter}" />
+                                        <ui:template>
+                                            <m:Text text="{LocalModel>ZzfgpIbsorig}"  />
+                                        </ui:template>
+                                    </ui:Column>
+
                                 </ui:columns>
                             </ui:Table>
                             </smartTable:SmartTable>
 						</blocks>
 					</ObjectPageSubSection>
+                    <ObjectPageSubSection title="{i18n>SapComment}" visible="{= ${LocalModel>HasComment} }" titleUppercase="false">
+						<blocks>
+                            <m:TextArea width="50%" class="sapUiTinyMarginBegin" value="{LocalModel>SapComment}" placeholder="Add comment" editable="false"/>
+                        </blocks>
+					</ObjectPageSubSection>
                     <ObjectPageSubSection title="{LocalModel>/dynNextApprTitle} Approver" visible="{= ${LocalModel>id} ? ${LocalModel>IsApprover} ? true : false : true}" titleUppercase="false">
 						<blocks>
                             <m:VBox>
-                                <m:Select forceSelection="false" showSecondaryValues= "true" selectedKey="{LocalModel>selNextApprover}" items="{LocalModel>/ApproverList}" class="sapUiSmallMarginBegin" width="20%">
+                                <m:Select forceSelection="{LocalModel>/ApproverForceSelection}" showSecondaryValues= "true" selectedKey="{LocalModel>selNextApprover}" items="{LocalModel>/ApproverList}" class="sapUiSmallMarginBegin" width="20%">
                                     <core:ListItem additionalText="{LocalModel>persnum}" text="{LocalModel>name}" key="{LocalModel>email}|{LocalModel>level}" />
                                 </m:Select>
                             </m:VBox>
 						</blocks>
 					</ObjectPageSubSection>
-                    <ObjectPageSubSection title="Comment" visible="{= ${LocalModel>id} ? ${LocalModel>IsApprover} ? true : false : true}" titleUppercase="false">
-						<blocks>
-                            <m:TextArea width="50%" class="sapUiTinyMarginBegin" value="{LocalModel>/Comment}" placeholder="Add comment" />
-                        </blocks>
-					</ObjectPageSubSection>
-					<ObjectPageSubSection title="Workflow History" titleUppercase="false">
+                        <ObjectPageSubSection title="{i18n>titleComment}" visible="{= ${LocalModel>id} ? ${LocalModel>IsApprover} ? true : false : true}" titleUppercase="false">
+                            <blocks>
+                                <m:TextArea width="50%" class="sapUiTinyMarginBegin" value="{LocalModel>/Comment}" placeholder="Add comment" />
+                            </blocks>
+                        </ObjectPageSubSection>
+					<ObjectPageSubSection title="{i18n>titleWorkflow}" titleUppercase="false">
 						<blocks>
                             <!-- <FeedInput
                                 post="onPost"
@@ -255,7 +447,7 @@
 				<m:ToolbarSpacer />
 				<m:Button type="Reject" text="{i18n>reject}" visible="{= ${LocalModel>IsApprover} ? true : false}" press="onPressRejectBtn"/>
                 <m:Button type="Accept" text="{i18n>approve}" visible="{= ${LocalModel>IsApprover} ? true : false}" press="onPressApproveBtn"/>
-                <m:Button type="Emphasized" text="Submit" visible="{= ${LocalModel>id} ? false : ${LocalModel>IsRequestor}}" press="onPressSubmitBtn"/>   
+                <m:Button type="Emphasized" text="{i18n>submit}" visible="{= ${LocalModel>id} ? false : ${LocalModel>IsRequestor}}" press="onPressSubmitBtn"/>   
 			</m:Toolbar>
 		</footer>
 	</ObjectPageLayout>
