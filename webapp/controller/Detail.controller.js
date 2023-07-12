@@ -319,6 +319,7 @@ sap.ui.define([
                 var sUrl = oDataModel.sServiceUrl + sPath;
                 $.ajax({
                     url: sUrl,
+                    url: oDataModel.sServiceUrl + "/",
                     type: "head",
                     headers: { 'x-csrf-token': 'Fetch' },
                     success: function(data, textStatus, oRes){
