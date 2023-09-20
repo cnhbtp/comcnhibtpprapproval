@@ -382,6 +382,7 @@ sap.ui.define([
                     var oPayload = {
                         status  : oBindingCtx.selNextApprover.split('|')[1],
                         nextApprover    : oBindingCtx.selNextApprover.split('|')[0],
+                        nextApproverFrgzu : oBindingCtx.Frgzu + "X"
                     };
                     var sUrl = sServiceUrl + "PurchaceReqSet/"+oBindingCtx.id;
                     this.loadBusyIndicator("ObjectPageLayout", true);
@@ -406,7 +407,8 @@ sap.ui.define([
                         pr  : oBindingCtx.Banfn,
                         status  : oBindingCtx.selNextApprover.split('|')[1],
                         nextApprover    : oBindingCtx.selNextApprover.split('|')[0],
-                        requestor   : sRequestor
+                        requestor   : sRequestor,
+                        nextApproverFrgzu : oBindingCtx.Frgzu + "X"
                     };
                     var sUrl = sServiceUrl + "PurchaceReqSet";
                     this.loadBusyIndicator("ObjectPageLayout", true);

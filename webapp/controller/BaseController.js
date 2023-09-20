@@ -137,7 +137,7 @@ sap.ui.define([
                                 aResults[i]['IsRequestor'] = false;
                                 aResults[i]['IsApprover'] = true;
                                 aResults[i]['id'] = oRes.value[iIdx].id;
-                                aResults[i]['nextApprover'] = oRes.value[iIdx].nextApprover;
+                                aResults[i]['nextApprover'] = oRes.value[iIdx].nextApproverFrgzu === aResults[i].Frgzu ? oRes.value[iIdx].nextApprover : "";
                                 aResults[i]['uistatus'] = 'Waiting for ' + oRes.value[iIdx].status + ' approval';
                                 aResults[i]['uistatusstate'] = 'Indication04';
                                 aResults[i]['status'] = oRes.value[iIdx].status;
@@ -146,7 +146,7 @@ sap.ui.define([
                                 aResults[i]['IsRequestor'] = false;
                                 aResults[i]['IsApprover'] = true;
                                 aResults[i]['id'] = oRes.value[iIdx].id;
-                                aResults[i]['nextApprover'] = oRes.value[iIdx].nextApprover;
+                                aResults[i]['nextApprover'] = oRes.value[iIdx].nextApproverFrgzu === aResults[i].Frgzu ? oRes.value[iIdx].nextApprover : "";
                                 aResults[i]['uistatus'] = 'Waiting for ' + aResults[i]['Eprofile'] + ' approval';
                                 aResults[i]['uistatusstate'] = 'Indication04';
                                 aResults[i]['status'] = aResults[i]['Eprofile'];
@@ -155,7 +155,7 @@ sap.ui.define([
                                 aResults[i]['IsRequestor'] = true;
                                 aResults[i]['IsApprover'] = false;
                                 aResults[i]['id'] = oRes.value[iIdx].id;
-                                aResults[i]['nextApprover'] = oRes.value[iIdx].nextApprover;
+                                aResults[i]['nextApprover'] = oRes.value[iIdx].nextApproverFrgzu === aResults[i].Frgzu ? oRes.value[iIdx].nextApprover : "";
                                 aResults[i]['uistatus'] = 'Waiting for ' + oRes.value[iIdx].status + ' approval';
                                 aResults[i]['uistatusstate'] = 'Warning';
                                 aResults[i]['status'] = oRes.value[iIdx].status;
