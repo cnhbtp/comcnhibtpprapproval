@@ -187,7 +187,7 @@ sap.ui.define([
                     var oSource = oEvent.getSource();
                     var oSrcBindingCtx = oSource.getBindingContext();
                     var oSrcModelItem = oSrcBindingCtx.getObject();
-                    window.open(`${sServiceUrl}/AttachmentStreamSet(Clmno='${oSrcModelItem.Banfn}',FileName='${ oSrcModelItem.FileName }')/$value`,"_blank");
+                    window.open(`${sServiceUrl}/AttachmentStreamSet(Banfn='${oSrcModelItem.Banfn}',FileName='${ oSrcModelItem.FileName }')/$value`,"_blank");
                 }
             },
 
