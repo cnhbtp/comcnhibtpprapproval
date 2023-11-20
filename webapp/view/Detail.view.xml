@@ -409,7 +409,7 @@
                     <ObjectPageSubSection title="{LocalModel>/dynNextApprTitle} Approver" visible="{= ${LocalModel>id} ? ${LocalModel>IsApprover} ? true : false : true}" titleUppercase="false">
 						<blocks>
                             <m:VBox>
-                                <m:Select forceSelection="{LocalModel>/ApproverForceSelection}" showSecondaryValues= "true" selectedKey="{LocalModel>selNextApprover}" items="{LocalModel>/ApproverList}" class="sapUiSmallMarginBegin" width="20%">
+                                <m:Select id="selApprover" forceSelection="{LocalModel>/ApproverForceSelection}" showSecondaryValues= "true" selectedKey="{LocalModel>selNextApprover}" items="{LocalModel>/ApproverList}" class="sapUiSmallMarginBegin" width="20%">
                                     <core:ListItem additionalText="{LocalModel>persnum}" text="{LocalModel>name}" key="{LocalModel>email}|{LocalModel>level}" />
                                 </m:Select>
                             </m:VBox>

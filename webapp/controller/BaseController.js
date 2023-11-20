@@ -153,7 +153,7 @@ sap.ui.define([
                                 aFinal.push(aResults[i]);
                             } else if (oRes.value[iIdx].requestor === sLoggedInUserID) {
                                 aResults[i]['IsRequestor'] = true;
-                                aResults[i]['IsApprover'] = false;
+                                aResults[i]['IsApprover'] = true;
                                 aResults[i]['id'] = oRes.value[iIdx].id;
                                 aResults[i]['nextApprover'] = oRes.value[iIdx].nextApproverFrgzu === aResults[i].Frgzu ? oRes.value[iIdx].nextApprover : "";
                                 aResults[i]['uistatus'] = 'Waiting for ' + oRes.value[iIdx].status + ' approval';
