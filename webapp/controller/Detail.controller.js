@@ -255,6 +255,11 @@ sap.ui.define([
                                 oLocalModel.setProperty("/ApproverForceSelection",true);
                                 var property = that.getView().getBindingContext("LocalModel").getPath()
                                 oLocalModel.setProperty(property + "/selNextApprover",oData.d.results[0].email + "|" + oData.d.results[0].level);
+                            } else {
+                                oLocalModel.setProperty("/ApproverForceSelection",false);
+                                var proLocalModel = that.getView().getBindingContext("LocalModel").getPath();
+                                that.getView().byId("selApprover").setSelectedKey(undefined)
+                                oLocalModel.setProperty(proLocalModel + "/selNextApprover", undefined);
                             }
                             oLocalModel.setProperty("/ApproverList", oData.d.results);
                             oLocalModel.setProperty("/dynNextApprTitle", oData.d.results[0].level);
