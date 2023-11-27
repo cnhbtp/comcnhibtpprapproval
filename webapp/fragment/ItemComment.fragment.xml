@@ -6,7 +6,7 @@
 	xmlns="sap.m" >
     <Dialog title ="Comment on Item Purchase Document:" contentWidth="25em" busyIndicatorDelay="0" class="sapUiSizeCompact">
         <VBox class="sapUiSmallMargin">
-            <TextArea width="100%" class="sapUiTinyMarginBegin" value="{LocalModel>SapItemComment}" placeholder="Provide additional comments" growing="true" editable="false" />
+            <TextArea width="100%" class="sapUiTinyMarginBegin" value="{LocalModel>SapItemComment}" placeholder="Provide additional comments" growing="true" editable="false"  growingMaxLines="10"/>
         </VBox>
         <endButton>
             <Button text="Close" press="onItemCommentClose" />
