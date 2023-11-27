@@ -403,7 +403,7 @@
 					</ObjectPageSubSection>
                     <ObjectPageSubSection title="{i18n>SapComment}" visible="{= ${LocalModel>HasComment} }" titleUppercase="false">
 						<blocks>
-                            <m:TextArea width="50%" class="sapUiTinyMarginBegin" value="{LocalModel>SapComment}" placeholder="Add comment" editable="false"/>
+                            <m:TextArea width="50%" class="sapUiTinyMarginBegin" value="{LocalModel>SapComment}" placeholder="Add comment" editable="false" growing="true" growingMaxLines="15"/>
                         </blocks>
 					</ObjectPageSubSection>
                     <ObjectPageSubSection title="{LocalModel>/dynNextApprTitle} Approver" visible="{= ${LocalModel>id} ? ${LocalModel>IsApprover} ? true : false : true}" titleUppercase="false">
